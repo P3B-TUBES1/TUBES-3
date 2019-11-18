@@ -12,7 +12,5 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.presenter = new Presenter(this);
-        //hai:)
-        //hai juga :)
     }
 }
