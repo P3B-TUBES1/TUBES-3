@@ -1,6 +1,5 @@
 package com.example.tubes3;
 
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,3 +59,4 @@ public class AdapterMangaChapter extends RecyclerView.Adapter{
         }
     }
 }
+
