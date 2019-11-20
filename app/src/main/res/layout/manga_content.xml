@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/previous_chapter"
                 android:textColor="@color/colorWhite"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
@@ -30,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_chevron_left_white_18dp"/>
             <EditText
+                android:id="@+id/chapter_number"
                 android:textColor="@color/colorWhite"
                 android:background="@null"
                 android:layout_weight="1"
@@ -37,8 +39,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:textAlignment="center"
+                android:inputType="number"
                 android:text="0"/>
             <ImageView
+                android:id="@+id/next_chapter"
                 android:textColor="@color/colorWhite"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"

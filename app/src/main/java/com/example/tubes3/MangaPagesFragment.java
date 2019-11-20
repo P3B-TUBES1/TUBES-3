@@ -1,9 +1,12 @@
 package com.example.tubes3;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +23,10 @@ public class MangaPagesFragment extends Fragment {
 
     private RecyclerView mangaContentRC;
     private IMainActivity ui;
+    private ImageView back_button;
+    private ImageView previous_chapter;
+    private ImageView next_chapter;
+    private EditText chapterNumber;
     private MangaContentAdapter mangaContentAdapter;
     public static MangaPagesFragment newInstance(){
         return new MangaPagesFragment();
@@ -35,6 +42,11 @@ public class MangaPagesFragment extends Fragment {
         mangaContentAdapter = new MangaContentAdapter();
         mangaContentRC.setAdapter(mangaContentAdapter);
         this.ui = (MainActivity)getContext();
+
+        this.back_button = view.findViewById(R.id.back_button);
+        this.previous_chapter = view.findViewById(R.id.previous_chapter);
+        this.next_chapter  =view.findViewById(R.id.next_chapter);
+        this.chapterNumber = view.findViewById(R.id.chapter_number);
         return view;
     }
     public void update(List<String> listOfMangaContent){
