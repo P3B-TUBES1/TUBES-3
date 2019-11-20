@@ -11,8 +11,8 @@
         android:layout_height="match_parent"
         >
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler_view"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/manga_content_recycler_view"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -22,29 +22,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
+            <ImageView
                 android:textColor="@color/colorWhite"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Back"/>
+                android:src="@drawable/baseline_chevron_left_white_18dp"/>
             <EditText
                 android:textColor="@color/colorWhite"
-                android:background="null"
+                android:background="@null"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:textAlignment="center"
                 android:text="0"/>
-            <TextView
+            <ImageView
                 android:textColor="@color/colorWhite"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:textAlignment="textEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next"/>
+                android:src="@drawable/baseline_chevron_right_white_18dp"/>
         </LinearLayout>
     </RelativeLayout>
 
