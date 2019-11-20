@@ -23,7 +23,7 @@ public class MangaChapterListFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerView.Adapter rvAdapter = new AdapterMangaChapter(presenter.getListManga());
+//        RecyclerView.Adapter rvAdapter = new AdapterMangaChapter(presenter.getListManga());
         return view;
     }
 }
