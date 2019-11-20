@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tubes3.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapter.MyViewHolder> {
-    private String[] n;
+    private List<String> listOfMangaContent;
     public MangaContentAdapter(){
-        String[] t= {"9a/9a1bece0638af100ac8f6c92cf922a940d0f2e00795646bbb909cc77.jpg","71/7196c1e8d858991e9962d5b1d44dc1bc2c47577a7b8ab7c08c933799.jpg",
-                "fd/fd7dda0798659f9ba3c48e779ac603af62b5c48b8f9c90e007cdfcbe.jpg"}; //dummy data
-        this.n = t;
-        Log.d("test",n.length+"");
+        this.listOfMangaContent = new ArrayList<String>();
     }
 
     @NonNull
@@ -31,13 +31,18 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv.setText(n[position]);
+        holder.tv.setText(listOfMangaContent.get(position));
     }
 
 
     @Override
     public int getItemCount() {
-        return this.n.length;
+        return this.listOfMangaContent.size();
+    }
+    public void update(List<String> listOfMangaContent){
+        this.listOfMangaContent.clear();
+        this.listOfMangaContent.addAll(listOfMangaContent);
+        this.notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
