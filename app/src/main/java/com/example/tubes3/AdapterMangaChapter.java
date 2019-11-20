@@ -14,6 +14,7 @@ import com.example.tubes3.model.Manga;
 
 public class AdapterMangaChapter extends RecyclerView.Adapter{
     private Manga[] listManga;
+    private MyViewHolder holder;
 
     public AdapterMangaChapter(Manga[] listManga) {
         this.listManga = listManga;
@@ -21,14 +22,16 @@ public class AdapterMangaChapter extends RecyclerView.Adapter{
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterMangaChapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_item,parent,false);
-        ViewHolder vh = new ViewHolder(view);
+        MyViewHolder vh = new MyViewHolder(view);
         return vh;
     }
 
+
+
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
         Manga manga = listManga[position];
         holder.img.setImageBitmap(manga.img);
         holder.tvTitle.setText(manga.title);
@@ -42,13 +45,13 @@ public class AdapterMangaChapter extends RecyclerView.Adapter{
     public int getItemCount() {
         return listManga.length;
     }
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
         protected ImageView img;
         protected TextView tvTitle;
         protected TextView tvReleaseDate;
         protected TextView tvIndex;
 
-        public ViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.iv_thumbnail);
             tvTitle = itemView.findViewById(R.id.tv_title);

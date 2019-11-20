@@ -16,6 +16,11 @@ public class MangaChapterListFragment extends Fragment {
     private IMainActivity iMainActivity;
     private Presenter presenter;
 
+    public static MangaChapterListFragment newInstance(){
+        MangaChapterListFragment mclf = new MangaChapterListFragment();
+
+        return mclf;
+    }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.manga_chapter_list_page,container,false);
         presenter = new Presenter(iMainActivity);
@@ -24,6 +29,7 @@ public class MangaChapterListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         RecyclerView.Adapter rvAdapter = new AdapterMangaChapter(presenter.getListManga());
+        rv.setAdapter(rvAdapter);
         return view;
     }
 }
