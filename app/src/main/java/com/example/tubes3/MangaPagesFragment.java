@@ -21,7 +21,7 @@ public class MangaPagesFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.manga_image_view,container,false);
+        View view = inflater.inflate(R.layout.manga_content,container,false);
         this.im = view.findViewById(R.id.image_view);
         return view;
     }
