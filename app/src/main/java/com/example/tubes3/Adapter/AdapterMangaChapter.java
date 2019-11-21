@@ -14,13 +14,16 @@ import com.example.tubes3.model.MangaChapterInfoModel;
 import com.example.tubes3.model.MangaChapterModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapter.MyViewHolder> {
-    private MangaChapterModel[] listChapter;
+    private List<MangaChapterModel> listChapter;
     private MyViewHolder holder;
     private final String BASE_URL = "https://cdn.mangaeden.com/mangasimg/";
 
-    public AdapterMangaChapter(MangaChapterModel[] listChapter) {
-        this.listChapter = listChapter;
+    public AdapterMangaChapter() {
+        this.listChapter = new LinkedList<MangaChapterModel>();
     }
 
     @NonNull
@@ -34,16 +37,21 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Picasso.get().load(BASE_URL+listChapter[position].getUrlImage()).into(holder.img);
-        holder.tvTitle.setText("CH. "+(position+1)+" - "+listChapter[position].getChapterTitle());
-        holder.tvReleaseDate.setText(listChapter[position].getChapterDate());
+        Picasso.get().load(BASE_URL+listChapter.get(position).getUrlImage()).into(holder.img);
+        holder.tvTitle.setText("CH. "+(position+1)+" - "+listChapter.get(position).getChapterTitle());
+        holder.tvReleaseDate.setText(listChapter.get(position).getChapterDate());
         holder.tvIndex.setText(position+1+"");
     }
 
+    public void update(List<MangaChapterModel> listOfMangaContent){
+        this.listChapter.clear();
+        this.listChapter.addAll(listOfMangaContent);
+        this.notifyDataSetChanged();
+    }
 
     @Override
     public int getItemCount() {
-        return listChapter.length;
+        return listChapter.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

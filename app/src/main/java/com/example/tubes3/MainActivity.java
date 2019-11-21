@@ -1,6 +1,7 @@
 package com.example.tubes3;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,11 +27,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.fragmentList = new Object[3];
+        this.fragmentList[1] = MangaChapterListFragment.newInstance();
         this.fragmentList[2] = MangaPagesFragment.newInstance();
         this.presenter = new Presenter(this);
         this.fm = getSupportFragmentManager();
         FragmentTransaction ft = this.fm.beginTransaction();
-        ft.add(R.id.fragment_container,(MangaPagesFragment)this.fragmentList[2]).commit();
+        ft.add(R.id.fragment_container, (MangaChapterListFragment) this.fragmentList[1]).commit();
     }
     @Override
     public void onWindowFocusChanged(boolean focus) {
@@ -40,6 +42,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     @Override
     public void updateMangaContent(List<String> listOfMangaContent) {
         ((MangaPagesFragment)this.fragmentList[2]).update(listOfMangaContent);
+    }
+
+    @Override
+    public void updateChapterList(List<MangaChapterModel> listChapter) {
+        ((MangaChapterListFragment)this.fragmentList[1]).update(listChapter);
     }
 
     @Override
@@ -53,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     }
 
     @Override
-    public MangaChapterModel[] getChapterArray() {
+    public List getChapterArray() {
         return presenter.getArrayChapterManga();
     }
 }
