@@ -39,7 +39,7 @@ public class MangaPagesFragment extends Fragment {
         mangaContentRC.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mangaContentRC.setLayoutManager(layoutManager);
-        mangaContentAdapter = new MangaContentAdapter();
+        mangaContentAdapter = new MangaContentAdapter(getResources().getDisplayMetrics().widthPixels);
         mangaContentRC.setAdapter(mangaContentAdapter);
         this.ui = (MainActivity)getContext();
 

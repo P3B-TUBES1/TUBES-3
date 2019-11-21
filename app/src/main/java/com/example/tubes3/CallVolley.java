@@ -1,6 +1,7 @@
 package com.example.tubes3;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -10,7 +11,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tubes3.model.MangaChapterInfoModel;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -19,11 +22,12 @@ public class CallVolley {
     protected Gson gson;
     protected Context context;
     protected RequestQueue queue;
-
-    public CallVolley(Context context) {
+    protected Presenter presenter;
+    public CallVolley(Context context,Presenter presenter) {
         this.context = context;
         this.gson  = new Gson();
         this.queue = Volley.newRequestQueue(context);
+        this.presenter = presenter;
     }
 
     public void getMangaList(){
@@ -31,7 +35,7 @@ public class CallVolley {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //MangaChapterInfoModel mangaChapterInfoModel = new MangaChapterInfoModel();
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -46,7 +50,7 @@ public class CallVolley {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -56,12 +60,25 @@ public class CallVolley {
         this.queue.add(jsonObjectRequest);
     }
 
-    public void getChapter(String chapterID){
+    public void getChapter(String chapterID,int indeks){
         String url = BASE_URL+"/chapter/" + chapterID + "/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //
+                JSONArray jsonArr=null;
+                String[] imgUrl=null;
+                JSONArray temp;
+                try {
+                    temp = response.getJSONArray("images");
+                    imgUrl = new String[temp.length()];
+                    for(int i=temp.length()-1;i>=0;i--){
+                        imgUrl[i] = temp.getJSONArray(i).getString(1);
+                    }
+                    presenter.addMangaContent(imgUrl);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override

@@ -18,8 +18,11 @@ import java.util.List;
 
 public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapter.MyViewHolder> {
     private List<String> listOfMangaContent;
+    private int viewWidth;
     protected final String BASE_URL= "https://cdn.mangaeden.com/mangasimg/";
-    public MangaContentAdapter(){
+    public MangaContentAdapter(int width){
+        this.viewWidth = width;
+        Log.d("width",width+"");
         this.listOfMangaContent = new ArrayList<String>();
     }
 
@@ -33,7 +36,8 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Picasso.get().load(BASE_URL+listOfMangaContent.get(position)).fit().into(holder.im);
+        Picasso.get().load(BASE_URL+listOfMangaContent.get(position)).resize(this.viewWidth,0).into(holder.im);
+
     }
 
 
