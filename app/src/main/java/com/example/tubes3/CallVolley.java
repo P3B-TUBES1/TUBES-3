@@ -8,6 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tubes3.model.MangaChapterInfoModel;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -30,7 +31,7 @@ public class CallVolley {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //
+                //MangaChapterInfoModel mangaChapterInfoModel = new MangaChapterInfoModel();
             }
         }, new Response.ErrorListener() {
             @Override

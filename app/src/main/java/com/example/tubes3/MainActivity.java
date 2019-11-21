@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.tubes3.Adapter.MangaContentAdapter;
+import com.example.tubes3.model.MangaChapterModel;
 
 import java.util.List;
 
@@ -49,5 +50,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     @Override
     public void changeToAnotherChapter(int i) {
 
+    }
+
+    @Override
+    public MangaChapterModel[] getChapterArray() {
+        return presenter.getArrayChapterManga();
     }
 }
