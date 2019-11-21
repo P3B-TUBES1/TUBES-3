@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tubes3.R;
-import com.example.tubes3.model.MangaChapterInfoModel;
+
 import com.example.tubes3.model.MangaChapterModel;
 import com.squareup.picasso.Picasso;
 
@@ -19,11 +19,13 @@ import java.util.List;
 
 public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapter.MyViewHolder> {
     private List<MangaChapterModel> listChapter;
-    private MyViewHolder holder;
     private final String BASE_URL = "https://cdn.mangaeden.com/mangasimg/";
 
     public AdapterMangaChapter() {
-        this.listChapter = new LinkedList<MangaChapterModel>();
+        this.listChapter = new LinkedList<>();
+        //this.listChapter.add(new MangaChapterModel("lalala","yeyeye","fa/fa40c083f83215a8e0b605e3706895197103ef4ce0aeda12e698babd.png",0));
+        //this.listChapter.add(new MangaChapterModel("yeyeye","yoyoyo","fa/fa40c083f83215a8e0b605e3706895197103ef4ce0aeda12e698babd.png",0));
+
     }
 
     @NonNull

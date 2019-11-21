@@ -38,7 +38,7 @@ public class Presenter {
     }
 
     public void addChapter(List listChapter){
-        
+
         this.ui.updateChapterList(this.listChapterManga);
     }
 
