@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.fragmentList = new Object[3];
+        this.fragmentList[1] = MangaChapterListFragment.newInstance();
         this.fragmentList[2] = MangaPagesFragment.newInstance();
         this.presenter = new Presenter(this);
         this.fm = getSupportFragmentManager();
@@ -43,6 +44,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     }
 
     @Override
+    public void updateChapterList(List<MangaChapterModel> listChapter) {
+        ((MangaChapterListFragment)this.fragmentList[1]).update(listChapter);
+    }
+
+    @Override
     public void changePage(int i) {
 
     }
@@ -50,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     @Override
     public void changeToAnotherChapter(int i) {
 
+    }
+
+    @Override
+    public List getChapterArray() {
+        return presenter.getArrayChapterManga();
     }
 
     @Override
