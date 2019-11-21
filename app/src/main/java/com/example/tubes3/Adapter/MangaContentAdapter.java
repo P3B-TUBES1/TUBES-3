@@ -11,12 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tubes3.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapter.MyViewHolder> {
     private List<String> listOfMangaContent;
+    protected final String BASE_URL= "https://cdn.mangaeden.com/mangasimg/";
     public MangaContentAdapter(){
         this.listOfMangaContent = new ArrayList<String>();
     }
@@ -31,7 +33,7 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv.setText(listOfMangaContent.get(position));
+        Picasso.get().load(BASE_URL+listOfMangaContent.get(position)).into(holder.im);
     }
 
 
@@ -50,7 +52,7 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
         private TextView tv;//dummy
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv = itemView.findViewById(R.id.image_view);
+            im = itemView.findViewById(R.id.image_view);
         }
     }
 }

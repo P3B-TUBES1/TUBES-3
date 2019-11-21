@@ -1,7 +1,8 @@
 package com.example.tubes3.model;
 
-public class Manga {
+public class ChapterModel {
     private String title;
     private String urlImage;
+    private String releasedDate;
 
 }

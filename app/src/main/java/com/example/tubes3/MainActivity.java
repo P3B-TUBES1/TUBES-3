@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.example.tubes3.Adapter.MangaContentAdapter;
@@ -49,5 +50,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     @Override
     public void changeToAnotherChapter(int i) {
 
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }

@@ -9,9 +9,11 @@ public class Presenter {
     private IMainActivity ui;
     private Manga[] listManga;
     private List<String> listOfMangaContent;
+    private CallVolley callVolley;
     public Presenter(IMainActivity ui){
         this.ui = ui;
         this.listOfMangaContent = new ArrayList<String>();
+        this.callVolley = new CallVolley(ui.getContext());
     }
 
     public Manga[] getListManga() {
