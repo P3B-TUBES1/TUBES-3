@@ -6,10 +6,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import android.content.Context;
 import android.os.Bundle;
 
 import com.example.tubes3.Adapter.MangaContentAdapter;
+import com.example.tubes3.model.MangaChapterModel;
 
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.fm = getSupportFragmentManager();
         FragmentTransaction ft = this.fm.beginTransaction();
         ft.add(R.id.fragment_container,(MangaPagesFragment)this.fragmentList[2]).commit();
+
     }
     @Override
     public void onWindowFocusChanged(boolean focus) {
@@ -59,9 +62,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     }
 
     @Override
-    public List getChapterArray() {
+    public List<MangaChapterModel> getChapterArray() {
         return presenter.getArrayChapterManga();
     }
+
 
     @Override
     public Context getContext() {

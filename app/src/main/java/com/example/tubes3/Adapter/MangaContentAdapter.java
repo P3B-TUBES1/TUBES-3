@@ -33,7 +33,7 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Picasso.get().load(BASE_URL+listOfMangaContent.get(position)).into(holder.im);
+        Picasso.get().load(BASE_URL+listOfMangaContent.get(position)).fit().into(holder.im);
     }
 
 
@@ -49,7 +49,6 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private ImageView im;
-        private TextView tv;//dummy
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             im = itemView.findViewById(R.id.image_view);

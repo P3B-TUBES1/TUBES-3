@@ -47,6 +47,8 @@ public class MangaPagesFragment extends Fragment {
         this.previous_chapter = view.findViewById(R.id.previous_chapter);
         this.next_chapter  =view.findViewById(R.id.next_chapter);
         this.chapterNumber = view.findViewById(R.id.chapter_number);
+        mangaContentRC.setScaleX(1f);
+        mangaContentRC.setScaleY(1f);
         return view;
     }
     public void update(List<String> listOfMangaContent){
