@@ -19,13 +19,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tubes3.Adapter.MangaContentAdapter;
+import com.example.tubes3.model.MangaChapterModel;
+
+import java.util.List;
 
 
-public class MangaPagesFragment extends Fragment implements View.OnTouchListener,View.OnClickListener{
+public class MangaPagesFragment extends Fragment implements View.OnTouchListener,View.OnClickListener,ViewInterface{
 
 
     private RecyclerView mangaContentRC;
     private IMainActivity ui;
+    private Presenter presenter;
     private ImageView back_button;
     private ImageView previous_chapter;
     private ImageView next_chapter;
@@ -69,13 +73,9 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         this.next_chapter.setOnClickListener(this);
         return view;
     }
-    public void update(String[] listOfMangaContent,int indeks){
-        this.mangaContentAdapter.update(listOfMangaContent);
-        this.chapterNumber.setText(indeks+"");
-        this.indeks = indeks;
+    public void setPresenter(Presenter presenter){
+        this.presenter = presenter;
     }
-
-
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -98,6 +98,24 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         else if(view == this.next_chapter){
 
         }
+    }
+
+    @Override
+    public void updateMangaContent(String[] listOfMangaContent, int indeks) {
+        Log.d("test","called");
+        this.mangaContentAdapter.update(listOfMangaContent);
+        this.chapterNumber.setText(indeks+"");
+        this.indeks = indeks;
+    }
+
+    @Override
+    public void updateChapterList(List<MangaChapterModel> listChapter) {
+
+    }
+
+    @Override
+    public void changeToAnotherChapter(int i) {
+
     }
 
     private class CustomZoom extends ScaleGestureDetector.SimpleOnScaleGestureListener implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
