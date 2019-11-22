@@ -60,7 +60,7 @@ public class CallVolley {
         this.queue.add(jsonObjectRequest);
     }
 
-    public void getChapter(String chapterID,int indeks){
+    public void getChapter(String chapterID, final int indeks){
         String url = BASE_URL+"/chapter/" + chapterID + "/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -74,7 +74,7 @@ public class CallVolley {
                     for(int i=temp.length()-1;i>=0;i--){
                         imgUrl[i] = temp.getJSONArray(i).getString(1);
                     }
-                    presenter.addMangaContent(imgUrl);
+                    presenter.addMangaContent(imgUrl,indeks);
                 }catch(Exception e){
                     e.printStackTrace();
                 }

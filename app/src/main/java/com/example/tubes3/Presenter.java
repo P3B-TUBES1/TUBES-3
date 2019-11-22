@@ -40,10 +40,10 @@ public class Presenter {
         this.ui.updateChapterList(this.listChapterManga);
     }
 
-    public void addMangaContent(String[] listOfMangeContent) {
+    public void addMangaContent(String[] listOfMangeContent,int indeks) {
         this.listOfMangaContent = listOfMangeContent;
 
-        this.ui.updateMangaContent(this.listOfMangaContent);
+        this.ui.updateMangaContent(this.listOfMangaContent,indeks);
     }
 
     public MangaChapterInfoModel getMangaChapterInfoModel() {
