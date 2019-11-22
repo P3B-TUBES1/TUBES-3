@@ -89,7 +89,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         private int viewWidth;
         private int viewHeight;
         private final float minZoom = 1.f;
-        private final float maxZoom = 2.f;
+        private final float maxZoom = 3.f;
         private float scaleFactor = 1.f;
         private float viewPosition = 1.f;
         private float startX=0;
