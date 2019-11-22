@@ -38,6 +38,8 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector scrollGesture;
     private int viewWidth;
+
+    private boolean isScroll = false;
     public static MangaPagesFragment newInstance(){
         return new MangaPagesFragment();
     }
@@ -108,14 +110,12 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
             mangaContentRC.setScaleY(scaleFactor);
             mangaContentRC.invalidate();
             mangaContentRC.requestLayout();
-
+            Log.d("Scale","scale");
             return super.onScale(detector);
         }
 
         @Override
         public boolean onDown(MotionEvent motionEvent) {
-                startX = motionEvent.getX();
-
             return false;
         }
 
@@ -131,12 +131,13 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
 
         @Override
         public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-                distX = motionEvent1.getX()-startX;
-                startX = motionEvent1.getX();
+                distX = Math.round(motionEvent1.getX()-motionEvent.getX());
+                Log.d("distX",distX+"");
+                viewPosition +=distX;
                 mangaContentRC.setTranslationX(viewPosition);
-                Log.d("v1",v1+"");
-                Log.d("v",v+"");
-                return false;
+                mangaContentRC.invalidate();
+                isScroll = true;
+                return true;
 
         }
 
