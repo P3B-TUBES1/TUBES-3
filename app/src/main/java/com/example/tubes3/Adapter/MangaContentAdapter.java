@@ -2,6 +2,8 @@ package com.example.tubes3.Adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,20 +12,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tubes3.IMainActivity;
 import com.example.tubes3.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapter.MyViewHolder> {
-    private List<String> listOfMangaContent;
+    private String[] listOfMangaContent;
     private int viewWidth;
     protected final String BASE_URL= "https://cdn.mangaeden.com/mangasimg/";
     public MangaContentAdapter(int width){
         this.viewWidth = width;
-        Log.d("width",width+"");
-        this.listOfMangaContent = new ArrayList<String>();
+        this.listOfMangaContent = new String[1];
     }
 
     @NonNull
@@ -35,19 +36,19 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Picasso.get().load(BASE_URL+listOfMangaContent.get(position)).resize(this.viewWidth,0).into(holder.im);
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+        Picasso.get().load(BASE_URL+listOfMangaContent[position]).
+                resize(this.viewWidth,0).into(holder.im);
 
     }
 
 
     @Override
     public int getItemCount() {
-        return this.listOfMangaContent.size();
+        return this.listOfMangaContent.length;
     }
-    public void update(List<String> listOfMangaContent){
-        this.listOfMangaContent.clear();
-        this.listOfMangaContent.addAll(listOfMangaContent);
+    public void update(String[] listOfMangaContent){
+        this.listOfMangaContent = listOfMangaContent;
         this.notifyDataSetChanged();
     }
 
@@ -56,6 +57,8 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             im = itemView.findViewById(R.id.image_view);
+
         }
+
     }
 }

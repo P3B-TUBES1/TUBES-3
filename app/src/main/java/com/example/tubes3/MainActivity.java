@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.presenter.addDummyData();
     }
     @Override
-    public void updateMangaContent(List<String> listOfMangaContent) {
+    public void updateMangaContent(String[] listOfMangaContent) {
         ((MangaPagesFragment)this.fragmentList[2]).update(listOfMangaContent);
     }
 
