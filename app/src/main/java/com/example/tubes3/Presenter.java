@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Presenter {
     private IMainActivity ui;
-    private ViewInterface[] fragmentInterface;
     private MangaModel[] listManga;
     private String[] listOfMangaContent;
     protected List<MangaChapterModel> listChapterManga;
@@ -17,9 +16,8 @@ public class Presenter {
     protected CallVolley callVolley;
 
 
-    public Presenter(IMainActivity ui,ViewInterface[] viewInterface){
+    public Presenter(IMainActivity ui){
         this.ui = ui;
-        this.fragmentInterface = viewInterface;
         this.callVolley = new CallVolley(ui.getContext(),this);
     }
 
@@ -44,7 +42,7 @@ public class Presenter {
     public void updateMangaContent(String[] listOfMangeContent, int indeks) {
         this.listOfMangaContent = listOfMangeContent;
 
-        this.fragmentInterface[2].updateMangaContent(this.listOfMangaContent,indeks);
+        this.ui.updateMangaContent(this.listOfMangaContent,indeks);
     }
 
     public MangaChapterInfoModel getMangaChapterInfoModel() {

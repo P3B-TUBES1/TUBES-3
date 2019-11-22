@@ -24,11 +24,10 @@ import com.example.tubes3.model.MangaChapterModel;
 import java.util.List;
 
 
-public class MangaPagesFragment extends Fragment implements View.OnTouchListener,View.OnClickListener,ViewInterface{
+public class MangaPagesFragment extends Fragment implements View.OnTouchListener,View.OnClickListener{
 
 
     private RecyclerView mangaContentRC;
-    private IMainActivity ui;
     private Presenter presenter;
     private ImageView back_button;
     private ImageView previous_chapter;
@@ -54,7 +53,6 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         this.previous_chapter = view.findViewById(R.id.previous_chapter);
         this.next_chapter  =view.findViewById(R.id.next_chapter);
         this.chapterNumber = view.findViewById(R.id.chapter_number);
-        this.ui = (MainActivity)getContext();
 
         mangaContentAdapter = new MangaContentAdapter(getResources().getDisplayMetrics().widthPixels);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -64,8 +62,8 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         mangaContentRC.setHasFixedSize(true);
 
         CustomZoom customZoom = new CustomZoom();
-        this.scaleGestureDetector = new ScaleGestureDetector(this.ui.getContext(),customZoom);
-        this.scrollGesture = new GestureDetector(this.ui.getContext(),customZoom);
+        this.scaleGestureDetector = new ScaleGestureDetector(getContext(),customZoom);
+        this.scrollGesture = new GestureDetector(getContext(),customZoom);
         this.mangaContentRC.setOnTouchListener(this);
 
         this.back_button.setOnClickListener(this);
@@ -75,6 +73,11 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
     }
     public void setPresenter(Presenter presenter){
         this.presenter = presenter;
+    }
+    public void update(String[] listOfMangaContent,int indeks){
+        this.mangaContentAdapter.update(listOfMangaContent);
+        this.indeks = indeks;
+        this.chapterNumber.setText(indeks+"");
     }
 
     @Override
@@ -98,24 +101,6 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         else if(view == this.next_chapter){
 
         }
-    }
-
-    @Override
-    public void updateMangaContent(String[] listOfMangaContent, int indeks) {
-        Log.d("test","called");
-        this.mangaContentAdapter.update(listOfMangaContent);
-        this.chapterNumber.setText(indeks+"");
-        this.indeks = indeks;
-    }
-
-    @Override
-    public void updateChapterList(List<MangaChapterModel> listChapter) {
-
-    }
-
-    @Override
-    public void changeToAnotherChapter(int i) {
-
     }
 
     private class CustomZoom extends ScaleGestureDetector.SimpleOnScaleGestureListener implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {

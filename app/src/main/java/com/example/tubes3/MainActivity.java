@@ -21,18 +21,16 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     private Object[] fragmentList;
     private FragmentManager fm;
-    private ViewInterface[] fragmentInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.fragmentList = new Object[3];
-        this.fragmentInterface = new ViewInterface[3];
         this.fragmentList[1] = MangaChapterListFragment.newInstance();
         this.fragmentList[2] = MangaPagesFragment.newInstance();
-        this.fragmentInterface[2] = (MangaPagesFragment)this.fragmentList[2];
-        this.presenter = new Presenter(this,fragmentInterface);
+        this.presenter = new Presenter(this);
+        ((MangaChapterListFragment)this.fragmentList[1]).setPresenter(this.presenter);
         ((MangaPagesFragment)(this.fragmentList[2])).setPresenter(this.presenter);
 
         this.fm = getSupportFragmentManager();
@@ -45,6 +43,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     public void onWindowFocusChanged(boolean focus) {
         super.onWindowFocusChanged(focus);
         this.presenter.addDummyData();
+    }
+
+    @Override
+    public void updateMangaContent(String[] listOfMangaContent, int indeks) {
+        ((MangaPagesFragment)this.fragmentList[2]).update(listOfMangaContent,indeks);
     }
 
     @Override
