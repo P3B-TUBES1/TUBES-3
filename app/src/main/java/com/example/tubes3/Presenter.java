@@ -4,7 +4,6 @@ import com.example.tubes3.model.MangaChapterInfoModel;
 import com.example.tubes3.model.MangaChapterModel;
 import com.example.tubes3.model.MangaModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Presenter {
@@ -40,7 +39,7 @@ public class Presenter {
         this.ui.updateChapterList(this.listChapterManga);
     }
 
-    public void addMangaContent(String[] listOfMangeContent,int indeks) {
+    public void updateMangaContent(String[] listOfMangeContent, int indeks) {
         this.listOfMangaContent = listOfMangeContent;
 
         this.ui.updateMangaContent(this.listOfMangaContent,indeks);

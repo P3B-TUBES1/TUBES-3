@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tubes3.Adapter.MangaContentAdapter;
 
 
-public class MangaPagesFragment extends Fragment implements View.OnTouchListener {
+public class MangaPagesFragment extends Fragment implements View.OnTouchListener,View.OnClickListener{
 
 
     private RecyclerView mangaContentRC;
@@ -30,6 +30,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
     private ImageView previous_chapter;
     private ImageView next_chapter;
     private EditText chapterNumber;
+    private int indeks;
 
     private MangaContentAdapter mangaContentAdapter;
     private ScaleGestureDetector scaleGestureDetector;
@@ -57,15 +58,21 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         mangaContentRC.setAdapter(mangaContentAdapter);
         mangaContentRC.setItemViewCacheSize(30);
         mangaContentRC.setHasFixedSize(true);
+
         CustomZoom customZoom = new CustomZoom();
         this.scaleGestureDetector = new ScaleGestureDetector(this.ui.getContext(),customZoom);
         this.scrollGesture = new GestureDetector(this.ui.getContext(),customZoom);
         this.mangaContentRC.setOnTouchListener(this);
+
+        this.back_button.setOnClickListener(this);
+        this.previous_chapter.setOnClickListener(this);
+        this.next_chapter.setOnClickListener(this);
         return view;
     }
     public void update(String[] listOfMangaContent,int indeks){
         this.mangaContentAdapter.update(listOfMangaContent);
         this.chapterNumber.setText(indeks+"");
+        this.indeks = indeks;
     }
 
 
@@ -78,6 +85,19 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         scrollGesture.onTouchEvent(motionEvent);
 
         return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == this.back_button){
+            //change page
+        }
+        else if(view == this.previous_chapter){
+
+        }
+        else if(view == this.next_chapter){
+
+        }
     }
 
     private class CustomZoom extends ScaleGestureDetector.SimpleOnScaleGestureListener implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {

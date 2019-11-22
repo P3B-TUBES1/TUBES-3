@@ -1,7 +1,6 @@
 package com.example.tubes3;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -9,9 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tubes3.model.MangaChapterInfoModel;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -74,7 +71,7 @@ public class CallVolley {
                     for(int i=temp.length()-1;i>=0;i--){
                         imgUrl[i] = temp.getJSONArray(i).getString(1);
                     }
-                    presenter.addMangaContent(imgUrl,indeks);
+                    presenter.updateMangaContent(imgUrl,indeks);
                 }catch(Exception e){
                     e.printStackTrace();
                 }

@@ -2,21 +2,16 @@ package com.example.tubes3.Adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tubes3.IMainActivity;
 import com.example.tubes3.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 
 public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapter.MyViewHolder> {
     private String[] listOfMangaContent;
