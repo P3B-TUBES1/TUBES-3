@@ -29,16 +29,19 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.fragmentList = new Fragment[3];
+        this.fragmentList[0] = MangaListFragment.newInstance();
         this.fragmentList[1] = MangaChapterListFragment.newInstance();
         this.fragmentList[2] = MangaPagesFragment.newInstance();
         this.presenter = new Presenter(this);
+        ((MangaListFragment)this.fragmentList[0]).setPresenter(this.presenter);
         ((MangaChapterListFragment)this.fragmentList[1]).setPresenter(this.presenter);
         ((MangaPagesFragment)(this.fragmentList[2])).setPresenter(this.presenter);
         this.fm = getSupportFragmentManager();
         FragmentTransaction ft = this.fm.beginTransaction();
+        ft.add(R.id.fragment_container, (MangaListFragment) this.fragmentList[0]).commit();
 //        ft.add(R.id.fragment_container, (MangaChapterListFragment) this.fragmentList[1]).commit();
 //        ft.add(R.id.fragment_container,(MangaPagesFragment)this.fragmentList[2]).commit();
-        presenter.initListManga();
+        this.presenter.initListManga();
 
     }
     @Override
