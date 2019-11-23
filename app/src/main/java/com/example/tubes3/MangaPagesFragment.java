@@ -106,7 +106,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         if(timer!=null) {
             timer.cancel();
         }
-        timer = new CountDownTimer(3000, 3000) {
+        timer = new CountDownTimer(5000, 5000) {
 
             @Override
             public void onTick(long l) {
