@@ -28,6 +28,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
 
 
     private RecyclerView mangaContentRC;
+    private IMainActivity ui;
     private Presenter presenter;
     private ImageView back_button;
     private ImageView previous_chapter;
@@ -53,6 +54,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         this.previous_chapter = view.findViewById(R.id.previous_chapter);
         this.next_chapter  =view.findViewById(R.id.next_chapter);
         this.chapterNumber = view.findViewById(R.id.chapter_number);
+        this.ui = (MainActivity)getContext();
 
         mangaContentAdapter = new MangaContentAdapter(getResources().getDisplayMetrics().widthPixels);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -93,7 +95,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
     @Override
     public void onClick(View view) {
         if(view == this.back_button){
-            //change page
+            this.ui.changePage(1);
         }
         else if(view == this.previous_chapter){
 

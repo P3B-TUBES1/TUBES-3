@@ -19,7 +19,8 @@ public class MangaChapterListFragment extends Fragment {
     private RecyclerView recyclerView;
     private AdapterMangaChapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    // vid iMainActivitynya gw hapus soalnya udah ada presenter
+
+    private IMainActivity iMainActivity;
     ImageView img;
     private Presenter presenter;
 
@@ -38,6 +39,7 @@ public class MangaChapterListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         mAdapter = new AdapterMangaChapter();
         recyclerView.setAdapter(mAdapter);
+        iMainActivity = (MainActivity)getContext();
         return view;
 
     }

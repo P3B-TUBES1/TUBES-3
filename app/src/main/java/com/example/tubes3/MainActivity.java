@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import androidx.fragment.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -19,14 +20,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     private Presenter presenter;
 
-    private Object[] fragmentList;
+    private Fragment[] fragmentList;
     private FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.fragmentList = new Object[3];
+        this.fragmentList = new Fragment[3];
         this.fragmentList[1] = MangaChapterListFragment.newInstance();
         this.fragmentList[2] = MangaPagesFragment.newInstance();
         this.presenter = new Presenter(this);
@@ -57,6 +58,18 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     @Override
     public void changePage(int i) {
+        FragmentTransaction ft = this.fm.beginTransaction();
+        for(int j=0;j<fragmentList.length;j++){
+            if(fragmentList[j].isAdded())ft.hide(fragmentList[j]);
+        }
+        if(fragmentList[i].isAdded()){
+
+            ft.show(fragmentList[i]);
+
+        }
+        else{
+            ft.add(R.id.fragment_container,fragmentList[i]);
+        }
 
     }
 
