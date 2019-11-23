@@ -1,6 +1,7 @@
 package com.example.tubes3;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -8,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tubes3.model.MangaModel;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -28,11 +30,24 @@ public class CallVolley {
     }
 
     public void getMangaList(){
-        String url = BASE_URL+"/api/list/0/";
+        String url = BASE_URL+"list/0/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                MangaModel[] mangaList=null;
+                JSONArray temp;
+                try {
+                    temp = response.getJSONArray("manga");
+                    mangaList = new MangaModel[temp.length()];
+                    for(int i=0;i<temp.length();i++){
+                        JSONObject tempObj = temp.getJSONObject(i);
+                        mangaList[i] = new MangaModel(tempObj.getString("i"),tempObj.getString("t"),tempObj.getString("im"));
+//                        Log.d("mangalist",i+tempObj.toString());
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                presenter.setListManga(mangaList);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -43,7 +58,7 @@ public class CallVolley {
     }
 
     public void getMangaInfo(String mangaID){
-        String url = BASE_URL+"/manga/" + mangaID + "/";
+        String url = BASE_URL+"manga/" + mangaID + "/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -58,7 +73,7 @@ public class CallVolley {
     }
 
     public void getChapter(String chapterID, final int indeks){
-        String url = BASE_URL+"/chapter/" + chapterID + "/";
+        String url = BASE_URL+"chapter/" + chapterID + "/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

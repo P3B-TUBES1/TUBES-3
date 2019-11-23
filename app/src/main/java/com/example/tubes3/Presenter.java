@@ -23,6 +23,14 @@ public class Presenter {
         this.listChapterManga = new ArrayList<MangaChapterModel>();
     }
 
+    public void initListManga(){
+        this.callVolley.getMangaList();
+    }
+
+    public void setListManga(MangaModel[] listManga) {
+        this.listManga = listManga;
+    }
+
     public MangaModel[] getListManga() {
         return this.listManga;
     }
