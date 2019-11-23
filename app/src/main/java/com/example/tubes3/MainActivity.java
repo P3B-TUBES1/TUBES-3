@@ -28,11 +28,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.presenter = new Presenter(this);
+        this.presenter.initListManga();
         this.fragmentList = new Fragment[3];
         this.fragmentList[0] = MangaListFragment.newInstance();
         this.fragmentList[1] = MangaChapterListFragment.newInstance();
         this.fragmentList[2] = MangaPagesFragment.newInstance();
-        this.presenter = new Presenter(this);
         ((MangaListFragment)this.fragmentList[0]).setPresenter(this.presenter);
         ((MangaChapterListFragment)this.fragmentList[1]).setPresenter(this.presenter);
         ((MangaPagesFragment)(this.fragmentList[2])).setPresenter(this.presenter);
@@ -41,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         ft.add(R.id.fragment_container, (MangaListFragment) this.fragmentList[0]).commit();
 //        ft.add(R.id.fragment_container, (MangaChapterListFragment) this.fragmentList[1]).commit();
 //        ft.add(R.id.fragment_container,(MangaPagesFragment)this.fragmentList[2]).commit();
-        this.presenter.initListManga();
-
     }
     @Override
     public void onWindowFocusChanged(boolean focus) {
@@ -91,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         return presenter.getArrayChapterManga();
     }
 
+    @Override
+    public void showMangaList() {
+        ((MangaListFragment)this.fragmentList[0]).showMangaList();
+    }
 
     @Override
     public Context getContext() {

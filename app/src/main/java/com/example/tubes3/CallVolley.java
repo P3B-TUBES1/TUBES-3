@@ -15,6 +15,9 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class CallVolley {
     protected final String BASE_URL = "https://www.mangaeden.com/api/";
@@ -34,20 +37,19 @@ public class CallVolley {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                MangaModel[] mangaList=null;
                 JSONArray temp;
                 try {
+                    ArrayList<MangaModel> listManga = new ArrayList<MangaModel>();
                     temp = response.getJSONArray("manga");
-                    mangaList = new MangaModel[temp.length()];
                     for(int i=0;i<temp.length();i++){
                         JSONObject tempObj = temp.getJSONObject(i);
-                        mangaList[i] = new MangaModel(tempObj.getString("i"),tempObj.getString("t"),tempObj.getString("im"));
-//                        Log.d("mangalist",i+tempObj.toString());
+                        listManga.add(new MangaModel(tempObj.getString("i"),tempObj.getString("t"),tempObj.getString("im")));
+                        //Log.d("mangalist",new MangaModel(tempObj.getString("i"),tempObj.getString("t"),tempObj.getString("im")).toString());
                     }
+                    presenter.addManga(listManga);
                 }catch(Exception e){
                     e.printStackTrace();
                 }
-                presenter.setListManga(mangaList);
             }
         }, new Response.ErrorListener() {
             @Override

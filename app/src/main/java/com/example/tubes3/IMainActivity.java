@@ -11,6 +11,7 @@ public interface IMainActivity {
     void updateChapterList(List<MangaChapterModel> listChapter);
     void changePage(int i);//merubah page fragment
     void changeToAnotherChapter(int i );// merubah chapter manga
+    void showMangaList();
     Context getContext();
     List<MangaChapterModel> getChapterArray();
 }

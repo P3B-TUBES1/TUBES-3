@@ -1,6 +1,8 @@
 package com.example.tubes3;
 
 
+import android.util.Log;
+
 import com.example.tubes3.model.MangaChapterInfoModel;
 import com.example.tubes3.model.MangaChapterModel;
 import com.example.tubes3.model.MangaModel;
@@ -10,7 +12,7 @@ import java.util.List;
 
 public class Presenter {
     private IMainActivity ui;
-    private MangaModel[] listManga;
+    private ArrayList<MangaModel> listManga;
     private String[] listOfMangaContent;
     protected List<MangaChapterModel> listChapterManga;
     protected MangaChapterInfoModel mangaChapterInfoModel;
@@ -21,17 +23,22 @@ public class Presenter {
         this.ui = ui;
         this.callVolley = new CallVolley(ui.getContext(),this);
         this.listChapterManga = new ArrayList<MangaChapterModel>();
+        this.listManga = new ArrayList<MangaModel>();
     }
 
     public void initListManga(){
         this.callVolley.getMangaList();
+        Log.d("inita",listManga.toString());
     }
 
-    public void setListManga(MangaModel[] listManga) {
-        this.listManga = listManga;
+
+    public void addManga(ArrayList<MangaModel> manga){
+        this.listManga = manga;
+        this.ui.showMangaList();
+        Log.d("inita",listManga.toString());
     }
 
-    public MangaModel[] getListManga() {
+    public ArrayList<MangaModel> getListManga() {
         return this.listManga;
     }
 
