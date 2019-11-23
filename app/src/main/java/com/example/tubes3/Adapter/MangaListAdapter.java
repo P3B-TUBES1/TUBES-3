@@ -42,6 +42,7 @@ public class MangaListAdapter extends ListGridAdapter<MangaModel, MangaViewHolde
                 .load(BASE_URL+item.getUrlImage())
                 .resize(230,350)
                 .placeholder(R.drawable.manga_placeholder)
+                .error(R.drawable.manga_error)
                 .into(cardViewHolder.imageView);
         Log.d("card","test");
     }

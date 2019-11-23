@@ -3,19 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="400px"
+    android:layout_height="250dp"
     android:background="@color/colorPrimary">
 
     <ImageView
         android:id="@+id/iv_manga"
-        android:layout_width="230px"
-        android:layout_height="350px"
+        android:layout_width="350dp"
+        android:layout_height="230dp"
         android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/tv_manga"
         android:layout_width="match_parent"
-        android:layout_height="50px"
+        android:layout_height="40dp"
         android:textAlignment="center"
-        android:textColor="@color/colorWhite"/>
+        android:textColor="@color/colorWhite"
+        android:layout_margin="3dp"/>
 </LinearLayout>
