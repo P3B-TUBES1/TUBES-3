@@ -148,7 +148,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         } else if (view == this.previous_chapter) {
             this.presenter.changeMangaContent(currentChapter - 1);
         } else if (view == this.next_chapter) {
-
+            this.presenter.changeMangaContent(currentChapter+1);
         }
         mangaContentRC.setAdapter(null);
     }
