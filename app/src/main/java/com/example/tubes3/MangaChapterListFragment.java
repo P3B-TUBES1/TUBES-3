@@ -1,7 +1,5 @@
 package com.example.tubes3;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +19,10 @@ public class MangaChapterListFragment extends Fragment {
     private RecyclerView recyclerView;
     private AdapterMangaChapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
     private IMainActivity iMainActivity;
     ImageView img;
+    private Presenter presenter;
 
     public static MangaChapterListFragment newInstance() {
         MangaChapterListFragment mclf = new MangaChapterListFragment();
@@ -43,7 +43,9 @@ public class MangaChapterListFragment extends Fragment {
         return view;
 
     }
-
+    public void setPresenter(Presenter presenter){
+        this.presenter  = presenter;
+    }
     public void update(List<MangaChapterModel> listOfMangaChapter){
         this.mAdapter.update(listOfMangaChapter);
     }

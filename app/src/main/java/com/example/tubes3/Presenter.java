@@ -1,5 +1,6 @@
 package com.example.tubes3;
 
+
 import com.example.tubes3.model.MangaChapterInfoModel;
 import com.example.tubes3.model.MangaChapterModel;
 import com.example.tubes3.model.MangaModel;
@@ -10,7 +11,7 @@ import java.util.List;
 public class Presenter {
     private IMainActivity ui;
     private MangaModel[] listManga;
-    private List<String> listOfMangaContent;
+    private String[] listOfMangaContent;
     protected List<MangaChapterModel> listChapterManga;
     protected MangaChapterInfoModel mangaChapterInfoModel;
     protected CallVolley callVolley;
@@ -18,7 +19,6 @@ public class Presenter {
 
     public Presenter(IMainActivity ui){
         this.ui = ui;
-        this.listOfMangaContent = new ArrayList<String>();
         this.callVolley = new CallVolley(ui.getContext(),this);
         this.listChapterManga = new ArrayList<>();
 
@@ -36,6 +36,7 @@ public class Presenter {
         listChapterManga.add(new MangaChapterModel("lalala","yeyeye","fa/fa40c083f83215a8e0b605e3706895197103ef4ce0aeda12e698babd.png",0));
         listChapterManga.add(new MangaChapterModel("lolololol","yeyeye","fa/fa40c083f83215a8e0b605e3706895197103ef4ce0aeda12e698babd.png",0));
         addChapter(listChapterManga);
+
     }
 
     public void addChapter(List listChapter){
@@ -43,12 +44,10 @@ public class Presenter {
         this.ui.updateChapterList(listChapter);
     }
 
-    public void addMangaContent(String[] listOfMangeContent) {
-        this.listOfMangaContent.clear();
-        for (int i = 0; i < listOfMangeContent.length; i++) {
-            this.listOfMangaContent.add(listOfMangeContent[i]);
-        }
-        this.ui.updateMangaContent(this.listOfMangaContent);
+    public void updateMangaContent(String[] listOfMangeContent, int indeks) {
+        this.listOfMangaContent = listOfMangeContent;
+
+        this.ui.updateMangaContent(this.listOfMangaContent,indeks);
     }
 
     public MangaChapterInfoModel getMangaChapterInfoModel() {
