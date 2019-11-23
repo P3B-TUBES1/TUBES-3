@@ -36,7 +36,7 @@ public class Presenter {
 
     public void addChapter(List listChapter){
 
-        this.ui.updateChapterList(this.listChapterManga);
+        this.ui.updateChapterList(listChapter);
     }
     public void changeMangaContent(int i){
         if(i<=0){
