@@ -67,7 +67,6 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
                 BitmapFactory.decodeResource(getResources(),R.drawable.waiting_image));
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mangaContentRC.setLayoutManager(layoutManager);
-        mangaContentRC.setAdapter(mangaContentAdapter);
         mangaContentRC.setItemViewCacheSize(5);
         mangaContentRC.setHasFixedSize(false);
 
@@ -89,6 +88,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         this.mangaContentAdapter.update(listOfMangaContent);
         this.indeks = indeks;
         this.chapterNumber.setText(indeks+"");
+        this.mangaContentRC.setAdapter(this.mangaContentAdapter);
     }
 
     @Override
@@ -118,23 +118,25 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
     @Override
     public void onClick(View view) {
         Log.d("clicked","clicked");
-        mangaContentRC.setAdapter(null);
-        if(view.equals(this.back_button)){
+        int currentChapter = Integer.parseInt(chapterNumber.getText().toString());
+        if(view==this.back_button){
             this.ui.changePage(1);
         }
         else if(view == this.previous_chapter){
-
+            this.presenter.changeMangaContent(currentChapter-1);
         }
         else if(view == this.next_chapter){
 
         }
+        mangaContentRC.setAdapter(null);
     }
 
     @Override
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
         if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
                 (i == KeyEvent.KEYCODE_ENTER)) {
-            // Perform action on key press
+            mangaContentRC.setAdapter(null);
+            presenter.changeMangaContent(Integer.parseInt(chapterNumber.getText().toString()));
             Toast.makeText(getContext(),chapterNumber.getText(), Toast.LENGTH_SHORT).show();
             return true;
         }

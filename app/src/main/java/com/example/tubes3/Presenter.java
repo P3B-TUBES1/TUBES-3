@@ -38,6 +38,12 @@ public class Presenter {
 
         this.ui.updateChapterList(this.listChapterManga);
     }
+    public void changeMangaContent(int i){
+        if(i<=0){
+            i=1;
+        }
+        this.callVolley.getChapter("5c41e6c1719a161e8d68f23c",i);
+    }
 
     public void updateMangaContent(String[] listOfMangeContent, int indeks) {
         this.listOfMangaContent = listOfMangeContent;
