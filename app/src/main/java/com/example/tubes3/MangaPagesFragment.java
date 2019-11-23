@@ -1,17 +1,21 @@
 package com.example.tubes3;
 
+import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +29,8 @@ import com.example.tubes3.model.MangaChapterModel;
 import java.util.List;
 
 
-public class MangaPagesFragment extends Fragment implements View.OnTouchListener,View.OnClickListener{
+public class MangaPagesFragment extends Fragment implements View.OnTouchListener
+        ,View.OnClickListener,View.OnKeyListener{
 
 
     private RecyclerView mangaContentRC;
@@ -74,6 +79,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         this.back_button.setOnClickListener(this);
         this.previous_chapter.setOnClickListener(this);
         this.next_chapter.setOnClickListener(this);
+        this.chapterNumber.setOnKeyListener(this);
         return view;
     }
     public void setPresenter(Presenter presenter){
@@ -87,6 +93,9 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+        chapterNumber.clearFocus();
+        ((InputMethodManager)getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),0);
         switch(motionEvent.getAction()){
             case MotionEvent.ACTION_UP:
                 onScale=false;
@@ -101,8 +110,15 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        mangaContentRC.setAdapter(null);
+    }
+
+    @Override
     public void onClick(View view) {
         Log.d("clicked","clicked");
+        mangaContentRC.setAdapter(null);
         if(view.equals(this.back_button)){
             this.ui.changePage(1);
         }
@@ -112,6 +128,17 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         else if(view == this.next_chapter){
 
         }
+    }
+
+    @Override
+    public boolean onKey(View view, int i, KeyEvent keyEvent) {
+        if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
+                (i == KeyEvent.KEYCODE_ENTER)) {
+            // Perform action on key press
+            Toast.makeText(getContext(),chapterNumber.getText(), Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
     }
 
     private class CustomZoom extends ScaleGestureDetector.SimpleOnScaleGestureListener implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {

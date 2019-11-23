@@ -36,6 +36,7 @@
                 android:id="@+id/chapter_number"
                 android:textColor="@color/colorWhite"
                 android:background="@null"
+                android:selectAllOnFocus="true"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
