@@ -102,7 +102,8 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
 
     @Override
     public void onClick(View view) {
-        if(view == this.back_button){
+        Log.d("clicked","clicked");
+        if(view.equals(this.back_button)){
             this.ui.changePage(1);
         }
         else if(view == this.previous_chapter){

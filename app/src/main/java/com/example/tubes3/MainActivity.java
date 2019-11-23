@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.fragment.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.tubes3.Adapter.MangaContentAdapter;
 import com.example.tubes3.model.MangaChapterModel;
@@ -58,16 +59,19 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     @Override
     public void changePage(int i) {
+        Log.d("test-1","test-1");
         FragmentTransaction ft = this.fm.beginTransaction();
         for(int j=0;j<fragmentList.length;j++){
             if(fragmentList[j].isAdded())ft.hide(fragmentList[j]);
+            Log.d("test","test");
         }
         if(fragmentList[i].isAdded()){
-
+            Log.d("test2","test2");
             ft.show(fragmentList[i]);
 
         }
         else{
+            Log.d("test2","test2");
             ft.add(R.id.fragment_container,fragmentList[i]);
         }
 
