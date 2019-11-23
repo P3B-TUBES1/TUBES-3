@@ -1,5 +1,6 @@
 package com.example.tubes3;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,19 +30,20 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
 
     private RecyclerView mangaContentRC;
     private IMainActivity ui;
+    private int indeks;
+
     private Presenter presenter;
     private ImageView back_button;
     private ImageView previous_chapter;
     private ImageView next_chapter;
     private EditText chapterNumber;
-    private int indeks;
 
     private MangaContentAdapter mangaContentAdapter;
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector scrollGesture;
 
-
     private boolean onScale = false;
+
     public static MangaPagesFragment newInstance(){
         return new MangaPagesFragment();
     }
@@ -56,12 +58,13 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         this.chapterNumber = view.findViewById(R.id.chapter_number);
         this.ui = (MainActivity)getContext();
 
-        mangaContentAdapter = new MangaContentAdapter(getResources().getDisplayMetrics().widthPixels);
+        mangaContentAdapter = new MangaContentAdapter(getResources().getDisplayMetrics().widthPixels,
+                BitmapFactory.decodeResource(getResources(),R.drawable.waiting_image));
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mangaContentRC.setLayoutManager(layoutManager);
         mangaContentRC.setAdapter(mangaContentAdapter);
-        mangaContentRC.setItemViewCacheSize(30);
-        mangaContentRC.setHasFixedSize(true);
+        mangaContentRC.setItemViewCacheSize(5);
+        mangaContentRC.setHasFixedSize(false);
 
         CustomZoom customZoom = new CustomZoom();
         this.scaleGestureDetector = new ScaleGestureDetector(getContext(),customZoom);
@@ -84,7 +87,12 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch(motionEvent.getAction()){
+            case MotionEvent.ACTION_UP:
+                onScale=false;
+        }
         scaleGestureDetector.onTouchEvent(motionEvent);
+
         if(onScale)return true;
 
         scrollGesture.onTouchEvent(motionEvent);
@@ -109,7 +117,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         private int viewWidth;
         private int viewHeight;
         private final float minZoom = 1.f;
-        private final float maxZoom = 3.f;
+        private final float maxZoom = 2.5f;
         private float scaleFactor = 1.f;
         private float viewPosition = 1.f;
         public CustomZoom(){
@@ -131,15 +139,10 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
             return super.onScale(detector);
         }
 
-        @Override
-        public void onScaleEnd(ScaleGestureDetector detector) {
-            onScale=false;
-            super.onScaleEnd(detector);
-        }
 
         @Override
         public boolean onDown(MotionEvent motionEvent) {
-            return false;
+            return true;
         }
 
         @Override
@@ -212,10 +215,17 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
                 scaleFactor=1.f;
 
                 viewPosition=1.f;
+                mangaContentRC.setTranslationY(0.f);
                 invalidateAll();
                 return false;
             }
             scaleFactor =2.f;
+            float translateX = viewWidth/2 - motionEvent.getX();
+            float translateY = viewHeight/2 - motionEvent.getY();
+            Math.round(translateX);
+            Math.round(translateY);
+            viewPosition+=translateX;
+            mangaContentRC.setTranslationY(translateY);
             invalidateAll();
             return false;
         }

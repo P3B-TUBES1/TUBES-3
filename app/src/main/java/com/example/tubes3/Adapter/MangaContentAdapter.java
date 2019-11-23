@@ -1,5 +1,9 @@
 package com.example.tubes3.Adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tubes3.R;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 
 public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapter.MyViewHolder> {
     private String[] listOfMangaContent;
     private int viewWidth;
     protected final String BASE_URL= "https://cdn.mangaeden.com/mangasimg/";
-    public MangaContentAdapter(int width){
+
+    public MangaContentAdapter(int width,Bitmap temp){
         this.viewWidth = width;
         this.listOfMangaContent = new String[1];
     }
@@ -31,9 +37,8 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-        Picasso.get().load(BASE_URL+listOfMangaContent[position]).
-                resize(this.viewWidth,0).into(holder.im);
+    public void onBindViewHolder(@NonNull  MyViewHolder holder, int position) {
+        holder.setIm(position);
 
     }
 
@@ -49,10 +54,30 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private ImageView im;
+        private int position;
+        private Target target = new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                im.getLayoutParams().height = bitmap.getHeight();
+                im.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        };
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             im = itemView.findViewById(R.id.image_view);
-
+        }
+        public void setIm(int position){
+            Picasso.get().load(BASE_URL+listOfMangaContent[position]).resize(viewWidth,0).into(target);
         }
 
     }
