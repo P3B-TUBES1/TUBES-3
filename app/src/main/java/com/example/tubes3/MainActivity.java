@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         ((MangaPagesFragment)(this.fragmentList[2])).setPresenter(this.presenter);
         this.fm = getSupportFragmentManager();
         FragmentTransaction ft = this.fm.beginTransaction();
-        //ft.add(R.id.fragment_container, (MangaListFragment) this.fragmentList[0]).commit();
-        ft.add(R.id.fragment_container, (MangaChapterListFragment) this.fragmentList[1]).commit();
+        ft.add(R.id.fragment_container, (MangaListFragment) this.fragmentList[0]).commit();
+//        ft.add(R.id.fragment_container, (MangaChapterListFragment) this.fragmentList[1]).commit();
         //ft.add(R.id.fragment_container,(MangaPagesFragment)this.fragmentList[2]).commit();
     }
     @Override
