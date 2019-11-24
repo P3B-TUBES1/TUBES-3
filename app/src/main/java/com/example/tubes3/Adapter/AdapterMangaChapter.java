@@ -48,7 +48,8 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Picasso.get().load(BASE_URL+listChapter.get(position).getUrlImage()).into(holder.img);
         holder.tvTitle.setText("CH. " + (position + 1) + " - " + listChapter.get(position).getChapterTitle());
-        long time = Long.parseLong(listChapter.get(position).getChapterDate());
+        String releaseDate = listChapter.get(position).getChapterDate();
+        long time = Long.parseLong(releaseDate);
         date.setTime(time);
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         holder.tvReleaseDate.setText(formatter.format(date));
