@@ -19,10 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <LinearLayout
+            android:id="@+id/footer_manga_content"
             android:background="@color/colorGrey"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/previous_chapter"
@@ -30,15 +31,16 @@
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:src="@drawable/baseline_chevron_left_white_18dp"/>
             <EditText
                 android:id="@+id/chapter_number"
                 android:textColor="@color/colorWhite"
                 android:background="@null"
+                android:selectAllOnFocus="true"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:textAlignment="center"
                 android:inputType="number"
@@ -49,7 +51,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:src="@drawable/baseline_chevron_right_white_18dp"/>
         </LinearLayout>
     </RelativeLayout>

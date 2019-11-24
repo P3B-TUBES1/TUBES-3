@@ -1,6 +1,7 @@
 package com.example.tubes3;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -8,10 +9,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tubes3.model.MangaModel;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CallVolley {
@@ -28,11 +33,23 @@ public class CallVolley {
     }
 
     public void getMangaList(){
-        String url = BASE_URL+"/api/list/0/";
+        String url = BASE_URL+"list/0/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                JSONArray temp;
+                try {
+                    ArrayList<MangaModel> listManga = new ArrayList<MangaModel>();
+                    temp = response.getJSONArray("manga");
+                    for(int i=0;i<temp.length();i++){
+                        JSONObject tempObj = temp.getJSONObject(i);
+                        listManga.add(new MangaModel(tempObj.getString("i"),tempObj.getString("t"),tempObj.getString("im")));
+                        //Log.d("mangalist",new MangaModel(tempObj.getString("i"),tempObj.getString("t"),tempObj.getString("im")).toString());
+                    }
+                    presenter.addManga(listManga);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -43,7 +60,7 @@ public class CallVolley {
     }
 
     public void getMangaInfo(String mangaID){
-        String url = BASE_URL+"/manga/" + mangaID + "/";
+        String url = BASE_URL+"manga/" + mangaID + "/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -58,11 +75,11 @@ public class CallVolley {
     }
 
     public void getChapter(String chapterID, final int indeks){
-        String url = BASE_URL+"/chapter/" + chapterID + "/";
+        String url = BASE_URL+"chapter/" + chapterID + "/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String[] imgUrl=null;
+                   String[] imgUrl=null;
                 JSONArray temp;
                 try {
                     temp = response.getJSONArray("images");

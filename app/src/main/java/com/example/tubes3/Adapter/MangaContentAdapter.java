@@ -27,7 +27,8 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
         this.viewWidth = width;
         this.listOfMangaContent = new String[1];
     }
-
+    public void cancelAll(){
+    }
     @NonNull
     @Override
     public MangaContentAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tubes3.Adapter.AdapterMangaChapter;
+import com.example.tubes3.model.MangaChapterInfoModel;
 import com.example.tubes3.model.MangaChapterModel;
 
 import java.util.List;
@@ -46,7 +47,7 @@ public class MangaChapterListFragment extends Fragment {
     public void setPresenter(Presenter presenter){
         this.presenter  = presenter;
     }
-    public void update(List<MangaChapterModel> listOfMangaChapter){
+    public void update(List<MangaChapterModel> listOfMangaChapter, MangaChapterInfoModel mangaChapterInfoModel){
         this.mAdapter.update(listOfMangaChapter);
     }
 }
