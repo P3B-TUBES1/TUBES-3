@@ -28,6 +28,10 @@ public class Presenter {
         this.searchListManga = new ArrayList<MangaModel>();
     }
 
+    public List<MangaChapterModel> getListChapterManga() {
+        return listChapterManga;
+    }
+
     public void initListManga(){
         this.callVolley.getMangaList();
         Log.d("inita",listManga.toString());
@@ -76,6 +80,5 @@ public class Presenter {
         this.ui.changePage(2);
         this.callVolley.getChapter(chapterId,chapterIndeks);
     }
-
 
 }
