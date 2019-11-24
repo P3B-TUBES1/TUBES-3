@@ -1,6 +1,10 @@
 package com.example.tubes3;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -23,13 +27,14 @@ import com.example.tubes3.model.MangaModel;
 import java.util.ArrayList;
 
 
-public class MangaListFragment extends Fragment implements View.OnTouchListener{
+public class MangaListFragment extends Fragment implements View.OnTouchListener, View.OnClickListener{
     private Presenter presenter;
     private MangaListAdapter adapter;
     private ListView listView;
     private IMainActivity ui;
     private EditText editText;
     private ImageView searchIcon;
+    private ImageView mangaLogo;
 
     public static MangaListFragment newInstance() {
         MangaListFragment fragment = new MangaListFragment();
@@ -43,6 +48,8 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener{
         listView = view.findViewById(R.id.manga_list_view);
         editText = view.findViewById(R.id.my_search_bar);
         searchIcon = view.findViewById(R.id.search_icon);
+        mangaLogo = view.findViewById(R.id.manga_eden_im);
+        mangaLogo.setOnClickListener(this);
         adapter = new MangaListAdapter(this.getContext(),3,presenter);
         listView.setAdapter(adapter);
 //        ArrayList<MangaModel> dummyData = new ArrayList<MangaModel>();
@@ -58,6 +65,7 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener{
     public void showMangaList(){
         adapter.addItemsInGrid(presenter.getListManga());
     }
+
     public void updateMangaList(){
         Log.d("updated","updated");
         adapter.clearList();
@@ -74,5 +82,27 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener{
                 .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
         presenter.searchManga(editText.getText().toString());
         return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == mangaLogo){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(R.string.dialog_message)
+                    .setTitle(R.string.dialog_title);
+            builder.setPositiveButton(R.string.open, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mangaeden.com/")));
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Log.d("alert", "alert");
+        }
     }
 }

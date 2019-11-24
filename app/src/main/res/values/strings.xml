@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TUBES3</string>
+    <string name="dialog_message">https://www.mangaeden.com/</string>
+    <string name="dialog_title">TUBES-3</string>
+    <string name="open">Open Site</string>
+    <string name="cancel">Cancel</string>
 </resources>
