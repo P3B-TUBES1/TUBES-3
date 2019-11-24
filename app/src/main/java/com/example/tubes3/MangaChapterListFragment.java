@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tubes3.Adapter.AdapterMangaChapter;
 import com.example.tubes3.model.MangaChapterInfoModel;
 import com.example.tubes3.model.MangaChapterModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class MangaChapterListFragment extends Fragment {
     private IMainActivity iMainActivity;
     ImageView img;
     private Presenter presenter;
+    private final String BASE_URL = "https://cdn.mangaeden.com/mangasimg/";
 
     public static MangaChapterListFragment newInstance() {
         MangaChapterListFragment mclf = new MangaChapterListFragment();
@@ -35,6 +37,7 @@ public class MangaChapterListFragment extends Fragment {
         View view = inflater.inflate(R.layout.manga_chapter_list_page, container, false);
         this.img = view.findViewById(R.id.iv_pic);
         //img.setImageResource();
+        Picasso.get().load(BASE_URL).into(img);
         recyclerView = view.findViewById(R.id.rv_list_chapter);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
