@@ -38,7 +38,7 @@ public class MangaChapterListFragment extends Fragment {
         View view = inflater.inflate(R.layout.manga_chapter_list_page, container, false);
         this.img = view.findViewById(R.id.iv_pic);
         //img.setImageResource();
-        Picasso.get().load(BASE_URL).into(img);
+        //Picasso.get().load(BASE_URL+presenter.listChapterManga..getUrlImage()).into(img);
         recyclerView = view.findViewById(R.id.rv_list_chapter);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
