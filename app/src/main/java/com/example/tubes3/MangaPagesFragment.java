@@ -95,10 +95,10 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
     }
 
     public void update(String[] listOfMangaContent, int indeks) {
+        this.mangaContentRC.setAdapter(this.mangaContentAdapter);
         this.mangaContentAdapter.update(listOfMangaContent);
         this.indeks = indeks;
         this.chapterNumber.setText(indeks + "");
-        this.mangaContentRC.setAdapter(this.mangaContentAdapter);
     }
 
     public void setTimer(final int screenHeight) {

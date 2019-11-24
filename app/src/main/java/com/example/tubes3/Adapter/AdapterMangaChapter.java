@@ -29,8 +29,10 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
     private Date date;
     Presenter presenter;
 
-    public AdapterMangaChapter() {
+    public AdapterMangaChapter(Presenter presenter) {
+
         this.listChapter = new LinkedList<>();
+        this.presenter=presenter;
     }
 
     public List<MangaChapterModel> getListChapter() {

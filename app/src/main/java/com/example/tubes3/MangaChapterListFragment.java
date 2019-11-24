@@ -43,7 +43,7 @@ public class MangaChapterListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
         recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(20));
-        mAdapter = new AdapterMangaChapter();
+        mAdapter = new AdapterMangaChapter(this.presenter);
         recyclerView.setAdapter(mAdapter);
         iMainActivity = (MainActivity)getContext();
         return view;
