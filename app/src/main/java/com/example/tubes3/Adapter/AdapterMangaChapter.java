@@ -45,7 +45,6 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_item, parent, false);
         MyViewHolder vh = new MyViewHolder(view);
         this.date = new Date();
-        //Collections.reverse(listChapter);
         return vh;
     }
 

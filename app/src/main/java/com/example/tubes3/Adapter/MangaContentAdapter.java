@@ -51,7 +51,6 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private ImageView im;
-        private int position;
         private Target target = new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {

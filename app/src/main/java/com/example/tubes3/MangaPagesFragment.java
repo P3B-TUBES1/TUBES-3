@@ -1,8 +1,5 @@
 package com.example.tubes3;
 
-import android.app.Activity;
-import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -17,7 +14,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,9 +22,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tubes3.Adapter.MangaContentAdapter;
-import com.example.tubes3.model.MangaChapterModel;
-
-import java.util.List;
 
 
 public class MangaPagesFragment extends Fragment implements View.OnTouchListener
