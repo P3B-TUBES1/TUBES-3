@@ -32,10 +32,15 @@ public class Presenter {
         this.callVolley.getMangaList();
         Log.d("inita",listManga.toString());
     }
+    public ArrayList<MangaModel> getSearchList(){
+        return searchListManga;
+    }
     public void searchManga(String keyword){
         this.searchListManga.clear();
         this.searchListManga.addAll(this.listManga);
         this.searchFunction = new SearchFunction(searchListManga);
+        this.searchListManga=searchFunction.search(keyword);
+        this.ui.getSearchList();
     }
 
     public void addManga(ArrayList<MangaModel> manga){

@@ -1,10 +1,16 @@
 package com.example.tubes3;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -17,11 +23,14 @@ import com.example.tubes3.model.MangaModel;
 import java.util.ArrayList;
 
 
-public class MangaListFragment extends Fragment {
+public class MangaListFragment extends Fragment implements View.OnTouchListener{
     private Presenter presenter;
     private MangaListAdapter adapter;
     private ListView listView;
     private IMainActivity ui;
+    private EditText editText;
+    private ImageView searchIcon;
+
     public static MangaListFragment newInstance() {
         MangaListFragment fragment = new MangaListFragment();
         return fragment;
@@ -32,6 +41,8 @@ public class MangaListFragment extends Fragment {
         View view = inflater.inflate(R.layout.manga_list_page, container, false);
         this.ui = (MainActivity) getContext();
         listView = view.findViewById(R.id.manga_list_view);
+        editText = view.findViewById(R.id.my_search_bar);
+        searchIcon = view.findViewById(R.id.search_icon);
         adapter = new MangaListAdapter(this.getContext(),3,presenter);
         listView.setAdapter(adapter);
 //        ArrayList<MangaModel> dummyData = new ArrayList<MangaModel>();
@@ -41,15 +52,27 @@ public class MangaListFragment extends Fragment {
 //        adapter.addItemsInGrid(dummyData);
 //        adapter.addItemsInGrid(dummyData);
         Log.d("inita",presenter.getListManga().toString());
+        searchIcon.setOnTouchListener(this);
         return view;
     }
-
     public void showMangaList(){
         adapter.addItemsInGrid(presenter.getListManga());
     }
-
+    public void updateMangaList(){
+        Log.d("updated","updated");
+        adapter.clearList();
+        adapter.addItemsInGrid(presenter.getSearchList());
+    }
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
     }
 
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+
+        ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+        presenter.searchManga(editText.getText().toString());
+        return false;
+    }
 }

@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import androidx.fragment.app.Fragment;
+
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.example.tubes3.Adapter.MangaContentAdapter;
 import com.example.tubes3.model.MangaChapterInfoModel;
 import com.example.tubes3.model.MangaChapterModel;
 
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.fm = getSupportFragmentManager();
         FragmentTransaction ft = this.fm.beginTransaction();
         ft.add(R.id.fragment_container, (MangaListFragment) this.fragmentList[0]).commit();
+
     }
     @Override
     public void onWindowFocusChanged(boolean focus) {
@@ -89,5 +90,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void getSearchList() {
+        ((MangaListFragment)this.fragmentList[0]).updateMangaList();
+        changePage(0);
     }
 }

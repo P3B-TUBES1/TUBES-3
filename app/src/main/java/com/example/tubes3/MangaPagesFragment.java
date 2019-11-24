@@ -159,7 +159,6 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
                 (i == KeyEvent.KEYCODE_ENTER)) {
             mangaContentRC.setAdapter(null);
             presenter.changeMangaContent(Integer.parseInt(chapterNumber.getText().toString()));
-            Toast.makeText(getContext(), chapterNumber.getText(), Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;

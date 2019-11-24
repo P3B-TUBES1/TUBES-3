@@ -1,6 +1,6 @@
 package com.example.tubes3.model;
 
-public class MangaModel implements Comparable<MangaModel>{
+public class MangaModel{
     protected String mangaID;
     protected String title;
     protected String urlImage;
@@ -35,8 +35,4 @@ public class MangaModel implements Comparable<MangaModel>{
         this.urlImage = urlImage;
     }
 
-    @Override
-    public int compareTo(MangaModel o) {
-        return title.compareTo(o.title);
-    }
 }

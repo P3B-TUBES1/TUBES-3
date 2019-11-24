@@ -14,4 +14,5 @@ public interface IMainActivity {
     void changeToAnotherChapter(int i );// merubah chapter manga
     void showMangaList();
     Context getContext();
+    void getSearchList();
 }

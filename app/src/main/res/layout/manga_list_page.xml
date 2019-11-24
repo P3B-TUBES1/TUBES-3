@@ -15,10 +15,33 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mangaeden"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
+            <ImageView
+                android:id="@+id/manga_eden_im"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mangaeden"/>
+            <EditText
+                android:id="@+id/my_search_bar"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/search_icon"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_search"/>
+        </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
