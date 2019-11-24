@@ -32,7 +32,7 @@ public class MangaListFragment extends Fragment {
         View view = inflater.inflate(R.layout.manga_list_page, container, false);
         this.ui = (MainActivity) getContext();
         listView = view.findViewById(R.id.manga_list_view);
-        adapter = new MangaListAdapter(this.getContext(),3,ui);
+        adapter = new MangaListAdapter(this.getContext(),3,presenter);
         listView.setAdapter(adapter);
 //        ArrayList<MangaModel> dummyData = new ArrayList<MangaModel>();
 //        dummyData.add(new MangaModel("577457ac719a1643eb0447be","Goblin Slayer","c3/c39211cbe7abdb3eb14ed12b355a408764866aa93e5cbdd59489fe76.png"));

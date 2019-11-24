@@ -11,16 +11,18 @@ import com.birin.gridlistviewadapters.ListGridAdapter;
 import com.birin.gridlistviewadapters.dataholders.CardDataHolder;
 import com.birin.gridlistviewadapters.utils.ChildViewsClickHandler;
 import com.example.tubes3.IMainActivity;
+import com.example.tubes3.Presenter;
 import com.example.tubes3.R;
 import com.example.tubes3.model.MangaModel;
 import com.squareup.picasso.Picasso;
 
 public class MangaListAdapter extends ListGridAdapter<MangaModel, MangaViewHolder> {
     protected final String BASE_URL= "https://cdn.mangaeden.com/mangasimg/";
-    IMainActivity ui;
+    Presenter presenter;
 
-    public MangaListAdapter(Context context, int totalCardsInRow, IMainActivity ui) {
+    public MangaListAdapter(Context context, int totalCardsInRow, Presenter presenter) {
         super(context, totalCardsInRow);
+        this.presenter = presenter;
         Log.d("card","test");
     }
 
@@ -49,7 +51,6 @@ public class MangaListAdapter extends ListGridAdapter<MangaModel, MangaViewHolde
 
     @Override
     protected void onCardClicked(MangaModel cardData) {
-
     }
 
     @Override
