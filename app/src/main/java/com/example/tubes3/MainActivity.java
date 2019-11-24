@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     public void changePage(int i) {
         Log.d("test-1","test-1");
         FragmentTransaction ft = this.fm.beginTransaction();
-//        for(int j=0;j<fragmentList.length;j++){
-//            if(fragmentList[j].isAdded())ft.hide(fragmentList[j]);
-//            Log.d("test","test");
-//        }
+        for(int j=0;j<fragmentList.length;j++){
+            if(fragmentList[j].isAdded())ft.hide(fragmentList[j]);
+            Log.d("test","test");
+        }
         if(fragmentList[i].isAdded()){
             Log.d("test2","test2");
             ft.show(fragmentList[i]);
