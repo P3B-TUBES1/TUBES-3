@@ -53,7 +53,7 @@ public class Presenter {
 
 
 //        listChapterManga.add(new MangaChapterModel("lalala","yeyeye","fa/fa40c083f83215a8e0b605e3706895197103ef4ce0aeda12e698babd.png",0));
-        listChapterManga.add(new MangaChapterModel("5c50641c719a167856c5f193","lolololol","yeyeye","fa/fa40c083f83215a8e0b605e3706895197103ef4ce0aeda12e698babd.png",0));
+        //listChapterManga.add(new MangaChapterModel("5c50641c719a167856c5f193","lolololol","yeyeye","fa/fa40c083f83215a8e0b605e3706895197103ef4ce0aeda12e698babd.png",0));
 //        addChapter(listChapterManga);
 
     }

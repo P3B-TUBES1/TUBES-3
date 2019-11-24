@@ -17,6 +17,8 @@ import com.squareup.picasso.Picasso;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,14 +26,14 @@ import java.util.List;
 public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapter.MyViewHolder> {
     private List<MangaChapterModel> listChapter;
     private final String BASE_URL = "https://cdn.mangaeden.com/mangasimg/";
-    private Calendar calendar;
     private Date date;
 
     public AdapterMangaChapter() {
         this.listChapter = new LinkedList<>();
-        //this.listChapter.add(new MangaChapterModel("lalala","yeyeye","fa/fa40c083f83215a8e0b605e3706895197103ef4ce0aeda12e698babd.png",0));
-        //this.listChapter.add(new MangaChapterModel("yeyeye","yoyoyo","fa/fa40c083f83215a8e0b605e3706895197103ef4ce0aeda12e698babd.png",0));
+    }
 
+    public List<MangaChapterModel> getListChapter() {
+        return listChapter;
     }
 
     @NonNull
@@ -40,20 +42,21 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_item, parent, false);
         MyViewHolder vh = new MyViewHolder(view);
         this.date = new Date();
+        //Collections.reverse(listChapter);
         return vh;
     }
 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-//        Picasso.get().load(BASE_URL+listChapter.get(position).getUrlImage()).into(holder.img);
-        holder.tvTitle.setText("CH. " + (position + 1) + " - " + listChapter.get(position).getChapterTitle());
+        Picasso.get().load(BASE_URL+listChapter.get(position).getUrlImage()).into(holder.img);
+        holder.tvTitle.setText("CH. " + (listChapter.size() - position) + " - " + listChapter.get(position).getChapterTitle());
         String releaseDate = listChapter.get(position).getChapterDate();
         long time = Long.parseLong(releaseDate);
         date.setTime(time);
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         holder.tvReleaseDate.setText(formatter.format(date));
-        holder.tvIndex.setText(position + 1 + "");
+        holder.tvIndex.setText("#"+(listChapter.size()-position));
     }
 
     public void update(List<MangaChapterModel> listOfMangaContent) {

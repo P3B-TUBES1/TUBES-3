@@ -17,4 +17,7 @@ public class MangaChapterInfoModel {
         this.releaseDate = releaseDate;
     }
 
+    public String getUrlImageCover() {
+        return urlImageCover;
+    }
 }
