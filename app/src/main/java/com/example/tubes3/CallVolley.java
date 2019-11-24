@@ -82,10 +82,11 @@ public class CallVolley {
                     for (int i = 0; i < chapters.length(); i++) {
                         try {
                             JSONArray chapter = chapters.getJSONArray(i);
+                            String chapterId = chapter.getString(3);
                             String chapterTitle = chapter.getString(2);
-                            String chapterDate = "";
-                            String urlImage = "";
-                            listChapter.add(new MangaChapterModel(chapterTitle, chapterDate, urlImage, i));
+                            String chapterDate = chapter.getString(1);
+                            String urlImage = urlImageCover;
+                            listChapter.add(new MangaChapterModel(chapterId,chapterTitle, chapterDate, urlImage, i));
                         } catch (JSONException ex) {
                             ex.printStackTrace();
                         }

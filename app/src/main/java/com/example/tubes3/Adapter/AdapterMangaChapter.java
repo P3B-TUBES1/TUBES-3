@@ -14,12 +14,18 @@ import com.example.tubes3.R;
 import com.example.tubes3.model.MangaChapterModel;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapter.MyViewHolder> {
     private List<MangaChapterModel> listChapter;
     private final String BASE_URL = "https://cdn.mangaeden.com/mangasimg/";
+    private Calendar calendar;
+    private Date date;
 
     public AdapterMangaChapter() {
         this.listChapter = new LinkedList<>();
@@ -33,6 +39,7 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
     public AdapterMangaChapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_item, parent, false);
         MyViewHolder vh = new MyViewHolder(view);
+        this.date = new Date();
         return vh;
     }
 
@@ -40,12 +47,15 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 //        Picasso.get().load(BASE_URL+listChapter.get(position).getUrlImage()).into(holder.img);
-        holder.tvTitle.setText("CH. "+(position+1)+" - "+listChapter.get(position).getChapterTitle());
-        holder.tvReleaseDate.setText(listChapter.get(position).getChapterDate());
-        holder.tvIndex.setText(position+1+"");
+        holder.tvTitle.setText("CH. " + (position + 1) + " - " + listChapter.get(position).getChapterTitle());
+        long time = Long.parseLong(listChapter.get(position).getChapterDate());
+        date.setTime(time);
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        holder.tvReleaseDate.setText(formatter.format(date));
+        holder.tvIndex.setText(position + 1 + "");
     }
 
-    public void update(List<MangaChapterModel> listOfMangaContent){
+    public void update(List<MangaChapterModel> listOfMangaContent) {
         this.listChapter.clear();
         this.listChapter.addAll(listOfMangaContent);
         this.notifyDataSetChanged();
