@@ -75,17 +75,6 @@ public class MangaListFragment extends Fragment implements View.OnClickListener{
         this.presenter = presenter;
     }
 
-//    @Override
-//    public boolean onTouch(View view, MotionEvent motionEvent) {
-//
-//        ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
-//               .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-//        if(editText.getText().toString()!="") {
-//            presenter.searchManga(editText.getText().toString());
-//        }
-//        return false;
-//    }
-
     @Override
     public void onClick(View view) {
         if(view == mangaLogo){
