@@ -41,13 +41,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.fm = getSupportFragmentManager();
         FragmentTransaction ft = this.fm.beginTransaction();
         ft.add(R.id.fragment_container, (MangaListFragment) this.fragmentList[0]).commit();
-        //ft.add(R.id.fragment_container, (MangaChapterListFragment) this.fragmentList[1]).commit();
-        //ft.add(R.id.fragment_container,(MangaPagesFragment)this.fragmentList[2]).commit();
     }
     @Override
     public void onWindowFocusChanged(boolean focus) {
         super.onWindowFocusChanged(focus);
-        this.presenter.addDummyData();
     }
 
     @Override
@@ -83,11 +80,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     public void changeToAnotherChapter(int i) {
 
     }
-
-//    @Override
-//    public List<MangaChapterModel> getChapterArray() {
-//        return presenter.getArrayChapterManga();
-//    }
 
     @Override
     public void showMangaList() {
