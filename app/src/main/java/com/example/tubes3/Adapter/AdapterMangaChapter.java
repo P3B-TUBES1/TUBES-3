@@ -56,9 +56,8 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
         holder.tvTitle.setText("CH. " + (listChapter.size() - position) + " - " + listChapter.get(position).getChapterTitle());
         String releaseDate = listChapter.get(position).getChapterDate();
         long time = Long.parseLong(releaseDate);
-        date.setTime(time);
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        holder.tvReleaseDate.setText(formatter.format(date));
+        holder.tvReleaseDate.setText(formatter.format(new Date(time*1000)));
         holder.tvIndex.setText("#"+(listChapter.size()-position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
