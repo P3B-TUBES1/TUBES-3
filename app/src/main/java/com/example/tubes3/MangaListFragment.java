@@ -51,12 +51,6 @@ public class MangaListFragment extends Fragment implements View.OnClickListener{
         mangaLogo = view.findViewById(R.id.manga_eden_im);
         adapter = new MangaListAdapter(this.getContext(),3,presenter);
         listView.setAdapter(adapter);
-//        ArrayList<MangaModel> dummyData = new ArrayList<MangaModel>();
-//        dummyData.add(new MangaModel("577457ac719a1643eb0447be","Goblin Slayer","c3/c39211cbe7abdb3eb14ed12b355a408764866aa93e5cbdd59489fe76.png"));
-//        dummyData.add(new MangaModel("577457ac719a1643eb0447be","Goblin Slayer","c3/c39211cbe7abdb3eb14ed12b355a408764866aa93e5cbdd59489fe76.png"));
-//        dummyData.add(new MangaModel("577457ac719a1643eb0447be","Goblin Slayer","c3/c39211cbe7abdb3eb14ed12b355a408764866aa93e5cbdd59489fe76.png"));
-//        adapter.addItemsInGrid(dummyData);
-//        adapter.addItemsInGrid(dummyData);
         Log.d("inita",presenter.getListManga().toString());
         mangaLogo.setOnClickListener(this);
         searchIcon.setOnClickListener(this);
