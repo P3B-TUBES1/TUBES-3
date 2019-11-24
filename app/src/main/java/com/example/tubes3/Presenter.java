@@ -70,10 +70,10 @@ public class Presenter {
 
     public void updateMangaContent(String[] listOfMangeContent, int indeks) {
         this.listOfMangaContent = listOfMangeContent;
-        this.ui.changePage(2);
         this.ui.updateMangaContent(this.listOfMangaContent,indeks);
     }
     public void fetchMangaContent(String chapterId,int chapterIndeks){
+        this.ui.changePage(2);
         this.callVolley.getChapter(chapterId,chapterIndeks);
     }
 
