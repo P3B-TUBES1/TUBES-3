@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         for(int j=0;j<fragmentList.length;j++){
             if(fragmentList[j].isAdded())ft.hide(fragmentList[j]);
         }
+        fm.popBackStack();
         if(fragmentList[i].isAdded()){
             ft.show(fragmentList[i]);
 
