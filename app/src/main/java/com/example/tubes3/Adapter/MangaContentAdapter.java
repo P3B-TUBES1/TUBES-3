@@ -1,8 +1,6 @@
 package com.example.tubes3.Adapter;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,11 +21,9 @@ public class MangaContentAdapter extends RecyclerView.Adapter<MangaContentAdapte
     private int viewWidth;
     protected final String BASE_URL= "https://cdn.mangaeden.com/mangasimg/";
 
-    public MangaContentAdapter(int width,Bitmap temp){
+    public MangaContentAdapter(int width){
         this.viewWidth = width;
         this.listOfMangaContent = new String[1];
-    }
-    public void cancelAll(){
     }
     @NonNull
     @Override

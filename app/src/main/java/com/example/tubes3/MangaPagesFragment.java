@@ -69,8 +69,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         this.linearLayout = view.findViewById(R.id.footer_manga_content);
         this.ui = (MainActivity) getContext();
 
-        mangaContentAdapter = new MangaContentAdapter(getResources().getDisplayMetrics().widthPixels,
-                BitmapFactory.decodeResource(getResources(), R.drawable.waiting_image));
+        mangaContentAdapter = new MangaContentAdapter(getResources().getDisplayMetrics().widthPixels);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mangaContentRC.setLayoutManager(layoutManager);
         mangaContentRC.setItemViewCacheSize(5);
@@ -125,6 +124,7 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
         chapterNumber.clearFocus();
         ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
                 .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_UP:
                 onScale = false;
@@ -200,7 +200,6 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
             float distX = Math.round(motionEvent1.getX() - motionEvent.getX());
             if (!isAtEdge(distX)) {
                 viewPosition += distX * 2;
-                mangaContentRC.setTranslationX(viewPosition);
                 invalidateAll();
 
             }
