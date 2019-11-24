@@ -51,6 +51,7 @@ public class MangaListAdapter extends ListGridAdapter<MangaModel, MangaViewHolde
 
     @Override
     protected void onCardClicked(MangaModel cardData) {
+        presenter.setMangaChapterInfo(cardData.getMangaID());
     }
 
     @Override

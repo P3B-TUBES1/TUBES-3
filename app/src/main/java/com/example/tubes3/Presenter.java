@@ -78,6 +78,11 @@ public class Presenter {
 
     }
 
+    public void setMangaChapterInfo(String mangaID){
+        this.callVolley.getMangaInfo(mangaID);
+        this.ui.changePage(1);
+    }
+
     public void updateMangaChapterInfo(List<MangaChapterModel> listChapterManga,MangaChapterInfoModel mangaChapterInfoModel){
         this.listChapterManga.clear();
         this.listChapterManga.addAll(listChapterManga);
@@ -115,5 +120,7 @@ public class Presenter {
 //    public List<MangaChapterModel> getArrayChapterManga() {
 //        return listChapterManga;
 //    }
+
+
 
 }
