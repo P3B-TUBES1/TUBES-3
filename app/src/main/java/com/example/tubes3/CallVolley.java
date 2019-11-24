@@ -20,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -70,13 +71,13 @@ public class CallVolley {
             public void onResponse(JSONObject response) {
                 try {
                     String mangaTitle = response.getString("title");
-                    String[] genre = gson.fromJson(gson.fromJson(response.getJSONArray("c").toString(), JsonObject.class), String[].class);
+                    String[] genre = gson.fromJson(response.getJSONArray("categories").toString(), String[].class);
                     String description = response.getString("description");
                     String artistName = response.getString("author");
                     String urlImageCover = response.getString("image");
                     String releaseDate = response.getString("released");
                     MangaChapterInfoModel mangaInfo = new MangaChapterInfoModel(mangaTitle, genre, description, artistName, urlImageCover, releaseDate);
-                    List<MangaChapterModel> listChapter = new ArrayList<MangaChapterModel>();
+                    List<MangaChapterModel> listChapter = new LinkedList<MangaChapterModel>();
                     JSONArray chapters = response.getJSONArray("chapters");
                     for (int i = 0; i < chapters.length(); i++) {
                         try {
