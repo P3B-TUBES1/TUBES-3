@@ -15,6 +15,11 @@ import com.example.tubes3.model.MangaChapterModel;
 
 import java.util.List;
 
+/*
+    DAVID CHRISTOPHER SENTOSA, 2017730015
+    Stephen Hadi, 2017730016
+    NICHOLAS ADITYA HALIM, 2017730018
+ */
 public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     private Presenter presenter;
