@@ -22,7 +22,7 @@ public class MangaChapterListFragment extends Fragment {
     private RecyclerView recyclerView;
     private AdapterMangaChapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
+    private MangaChapterInfoModel mangaChapterInfoModel;
     private IMainActivity iMainActivity;
     ImageView img;
     private Presenter presenter;
@@ -38,7 +38,7 @@ public class MangaChapterListFragment extends Fragment {
         View view = inflater.inflate(R.layout.manga_chapter_list_page, container, false);
         this.img = view.findViewById(R.id.iv_pic);
         //img.setImageResource();
-        //Picasso.get().load(BASE_URL+presenter.listChapterManga..getUrlImage()).into(img);
+        //this.mangaChapterInfoModel = presenter.mangaChapterInfoModel;
         recyclerView = view.findViewById(R.id.rv_list_chapter);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -53,6 +53,6 @@ public class MangaChapterListFragment extends Fragment {
     }
     public void update(List<MangaChapterModel> listOfMangaChapter, MangaChapterInfoModel mangaChapterInfoModel){
         this.mAdapter.update(listOfMangaChapter);
-        Picasso.get().load(BASE_URL+mangaChapterInfoModel.getUrlImageCover()+"/").into(img);
+        Picasso.get().load(BASE_URL+mangaChapterInfoModel.getUrlImageCover()).into(img);
     }
 }

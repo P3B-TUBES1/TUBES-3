@@ -86,7 +86,7 @@ public class CallVolley {
                             String chapterTitle = chapter.getString(2);
                             String chapterDate = chapter.getLong(1)+"";
                             String urlImage = urlImageCover;
-                            listChapter.add(new MangaChapterModel(chapterId,chapterTitle, chapterDate, urlImage, i));
+                            listChapter.add(new MangaChapterModel(chapterId,chapterTitle, chapterDate, urlImage, chapters.length()-i));
                         } catch (JSONException ex) {
                             ex.printStackTrace();
                         }
