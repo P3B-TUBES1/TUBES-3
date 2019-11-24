@@ -27,7 +27,7 @@ import com.example.tubes3.model.MangaModel;
 import java.util.ArrayList;
 
 
-public class MangaListFragment extends Fragment implements View.OnTouchListener, View.OnClickListener{
+public class MangaListFragment extends Fragment implements View.OnClickListener{
     private Presenter presenter;
     private MangaListAdapter adapter;
     private ListView listView;
@@ -49,7 +49,6 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener,
         editText = view.findViewById(R.id.my_search_bar);
         searchIcon = view.findViewById(R.id.search_icon);
         mangaLogo = view.findViewById(R.id.manga_eden_im);
-        mangaLogo.setOnClickListener(this);
         adapter = new MangaListAdapter(this.getContext(),3,presenter);
         listView.setAdapter(adapter);
 //        ArrayList<MangaModel> dummyData = new ArrayList<MangaModel>();
@@ -59,7 +58,8 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener,
 //        adapter.addItemsInGrid(dummyData);
 //        adapter.addItemsInGrid(dummyData);
         Log.d("inita",presenter.getListManga().toString());
-        searchIcon.setOnTouchListener(this);
+        mangaLogo.setOnClickListener(this);
+        searchIcon.setOnClickListener(this);
         return view;
     }
     public void showMangaList(){
@@ -73,18 +73,6 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener,
     }
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
-    }
-
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(
-                getContext().INPUT_METHOD_SERVICE);
-        View focusedView = getActivity().getCurrentFocus();
-        if (focusedView != null) {
-            inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-        return false;
     }
 
     @Override
@@ -106,6 +94,9 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener,
             AlertDialog dialog = builder.create();
             dialog.show();
             Log.d("alert", "alert");
+        }
+        if(view == searchIcon){
+            presenter.searchManga(editText.getText().toString());
         }
     }
 }
