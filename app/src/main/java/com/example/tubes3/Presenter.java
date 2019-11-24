@@ -73,7 +73,11 @@ public class Presenter {
         if(i<=0){
             i=1;
         }
-        this.callVolley.getChapter("5c41e6c1719a161e8d68f23c",i);
+        else if(i>=listChapterManga.size()){
+            i= listChapterManga.size();
+        }
+
+        this.callVolley.getChapter(listChapterManga.get(listChapterManga.size()-i).getChapterId(),i);
     }
 
 

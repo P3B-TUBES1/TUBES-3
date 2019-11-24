@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     private Fragment[] fragmentList;
     private FragmentManager fm;
-
+    private int backStackVal=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,18 +61,23 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     @Override
     public void changePage(int i) {
         FragmentTransaction ft = this.fm.beginTransaction();
-        fm.popBackStack();
+        boolean stats= fragmentList[2].isVisible();
+        if(stats){
+            ft.remove(fragmentList[2]);
+        }
         for(int j=0;j<fragmentList.length;j++){
-            if(fragmentList[j].isAdded())ft.hide(fragmentList[j]);
+            if(fragmentList[j].isVisible() && j!=2){
+                ft.hide(fragmentList[j]);
+                ft.addToBackStack(null);
+            }
         }
         if(fragmentList[i].isAdded()){
             ft.show(fragmentList[i]);
-
         }
         else{
             ft.add(R.id.fragment_container,fragmentList[i]);
         }
-        ft.addToBackStack(fragmentList[i].getClass().getName());
+        if(!stats || i!=0) ft.addToBackStack(null);
         ft.commit();
     }
 
