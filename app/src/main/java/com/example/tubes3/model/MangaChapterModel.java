@@ -1,6 +1,6 @@
 package com.example.tubes3.model;
 
-public class MangaChapterModel {
+public class `MangaChapterModel {
     protected String chapterTitle;
     protected String chapterDate;
     protected String urlImage;
