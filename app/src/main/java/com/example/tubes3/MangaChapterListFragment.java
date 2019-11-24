@@ -1,6 +1,7 @@
 package com.example.tubes3;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MangaChapterListFragment extends Fragment {
+public class MangaChapterListFragment extends Fragment implements View.OnClickListener {
     private RecyclerView recyclerView;
     private AdapterMangaChapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -26,6 +27,9 @@ public class MangaChapterListFragment extends Fragment {
     ImageView img;
     private Presenter presenter;
     private final String BASE_URL = "https://cdn.mangaeden.com/mangasimg/";
+    private ImageView back_button;
+    private IMainActivity ui;
+
 
     public static MangaChapterListFragment newInstance() {
         MangaChapterListFragment mclf = new MangaChapterListFragment();
@@ -46,6 +50,9 @@ public class MangaChapterListFragment extends Fragment {
         mAdapter = new AdapterMangaChapter(this.presenter);
         recyclerView.setAdapter(mAdapter);
         iMainActivity = (MainActivity)getContext();
+        this.back_button = view.findViewById(R.id.back_button);
+        this.back_button.setOnClickListener(this);
+        this.ui = (MainActivity) getContext();
         return view;
 
     }
@@ -56,5 +63,11 @@ public class MangaChapterListFragment extends Fragment {
         this.mAdapter.update(listOfMangaChapter);
         this.mangaChapterInfoModel = mangaChapterInfoModel;
         Picasso.get().load(BASE_URL+mangaChapterInfoModel.getUrlImageCover()).into(img);
+    }
+
+    public void onClick(View view) {
+        if (view == this.back_button) {
+            this.ui.changePage(0);
+        }
     }
 }
