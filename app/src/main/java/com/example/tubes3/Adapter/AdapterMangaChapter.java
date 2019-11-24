@@ -1,5 +1,6 @@
 package com.example.tubes3.Adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tubes3.Presenter;
 import com.example.tubes3.R;
 
 import com.example.tubes3.model.MangaChapterModel;
@@ -25,6 +27,7 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
     private List<MangaChapterModel> listChapter;
     private final String BASE_URL = "https://cdn.mangaeden.com/mangasimg/";
     private Date date;
+    Presenter presenter;
 
     public AdapterMangaChapter() {
         this.listChapter = new LinkedList<>();
@@ -46,7 +49,7 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
 
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         Picasso.get().load(BASE_URL+listChapter.get(position).getUrlImage()).into(holder.img);
         holder.tvTitle.setText("CH. " + (listChapter.size() - position) + " - " + listChapter.get(position).getChapterTitle());
         String releaseDate = listChapter.get(position).getChapterDate();
@@ -55,6 +58,13 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         holder.tvReleaseDate.setText(formatter.format(date));
         holder.tvIndex.setText("#"+(listChapter.size()-position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("clik","clik");
+                presenter.fetchMangaContent(listChapter.get(position).getChapterId(),listChapter.get(position).getIndex());
+            }
+        });
     }
 
     public void update(List<MangaChapterModel> listOfMangaContent) {
@@ -68,7 +78,10 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
         return listChapter.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected ImageView img;
         protected TextView tvTitle;
         protected TextView tvReleaseDate;
@@ -80,6 +93,12 @@ public class AdapterMangaChapter extends RecyclerView.Adapter<AdapterMangaChapte
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvReleaseDate = itemView.findViewById(R.id.tv_releaseDate);
             tvIndex = itemView.findViewById(R.id.tv_index);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+
         }
     }
 }

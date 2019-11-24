@@ -1,7 +1,6 @@
 package com.example.tubes3;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +41,8 @@ public class MangaChapterListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rv_list_chapter);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+        recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(20));
         mAdapter = new AdapterMangaChapter();
         recyclerView.setAdapter(mAdapter);
         iMainActivity = (MainActivity)getContext();
@@ -53,6 +54,7 @@ public class MangaChapterListFragment extends Fragment {
     }
     public void update(List<MangaChapterModel> listOfMangaChapter, MangaChapterInfoModel mangaChapterInfoModel){
         this.mAdapter.update(listOfMangaChapter);
+        this.mangaChapterInfoModel = mangaChapterInfoModel;
         Picasso.get().load(BASE_URL+mangaChapterInfoModel.getUrlImageCover()).into(img);
     }
 }
