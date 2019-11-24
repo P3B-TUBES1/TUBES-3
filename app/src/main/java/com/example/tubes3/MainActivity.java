@@ -61,10 +61,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     @Override
     public void changePage(int i) {
         FragmentTransaction ft = this.fm.beginTransaction();
+        fm.popBackStack();
         for(int j=0;j<fragmentList.length;j++){
             if(fragmentList[j].isAdded())ft.hide(fragmentList[j]);
         }
-        fm.popBackStack();
         if(fragmentList[i].isAdded()){
             ft.show(fragmentList[i]);
 
@@ -72,9 +72,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         else{
             ft.add(R.id.fragment_container,fragmentList[i]);
         }
-        ft.addToBackStack(null);
+        ft.addToBackStack(fragmentList[i].getClass().getName());
         ft.commit();
-
     }
 
     @Override

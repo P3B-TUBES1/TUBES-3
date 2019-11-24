@@ -114,12 +114,9 @@ public class CallVolley {
                 JSONArray temp;
                 try {
                     temp = response.getJSONArray("images");
-                    Log.d("temp",temp+"");
                     imgUrl = new String[temp.length()];
-                    for(int i=temp.length()-1;i>=0;i--){
-                        Log.d("jsonarr",temp.getJSONArray(i)+"");
-                        imgUrl[i] = temp.getJSONArray(i).getString(1);
-                        Log.d("imgurl",imgUrl[i]);
+                    for(int i=0;i<temp.length();i++){
+                        imgUrl[i] = temp.getJSONArray(temp.length()-1-i).getString(1);
                     }
                     presenter.updateMangaContent(imgUrl,indeks);
                 }catch(Exception e){
