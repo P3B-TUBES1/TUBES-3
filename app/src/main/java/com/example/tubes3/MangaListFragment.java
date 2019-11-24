@@ -27,7 +27,7 @@ import com.example.tubes3.model.MangaModel;
 import java.util.ArrayList;
 
 
-public class MangaListFragment extends Fragment implements View.OnTouchListener, View.OnClickListener{
+public class MangaListFragment extends Fragment implements View.OnClickListener{
     private Presenter presenter;
     private MangaListAdapter adapter;
     private ListView listView;
@@ -49,7 +49,6 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener,
         editText = view.findViewById(R.id.my_search_bar);
         searchIcon = view.findViewById(R.id.search_icon);
         mangaLogo = view.findViewById(R.id.manga_eden_im);
-        mangaLogo.setOnClickListener(this);
         adapter = new MangaListAdapter(this.getContext(),3,presenter);
         listView.setAdapter(adapter);
 //        ArrayList<MangaModel> dummyData = new ArrayList<MangaModel>();
@@ -59,7 +58,8 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener,
 //        adapter.addItemsInGrid(dummyData);
 //        adapter.addItemsInGrid(dummyData);
         Log.d("inita",presenter.getListManga().toString());
-        searchIcon.setOnTouchListener(this);
+        mangaLogo.setOnClickListener(this);
+        searchIcon.setOnClickListener(this);
         return view;
     }
     public void showMangaList(){
@@ -75,14 +75,16 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener,
         this.presenter = presenter;
     }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-
-        ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
-                .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-        presenter.searchManga(editText.getText().toString());
-        return false;
-    }
+//    @Override
+//    public boolean onTouch(View view, MotionEvent motionEvent) {
+//
+//        ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
+//               .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+//        if(editText.getText().toString()!="") {
+//            presenter.searchManga(editText.getText().toString());
+//        }
+//        return false;
+//    }
 
     @Override
     public void onClick(View view) {
@@ -103,6 +105,9 @@ public class MangaListFragment extends Fragment implements View.OnTouchListener,
             AlertDialog dialog = builder.create();
             dialog.show();
             Log.d("alert", "alert");
+        }
+        if(view == searchIcon){
+            presenter.searchManga(editText.getText().toString());
         }
     }
 }

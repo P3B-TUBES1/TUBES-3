@@ -122,8 +122,8 @@ public class MangaPagesFragment extends Fragment implements View.OnTouchListener
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         chapterNumber.clearFocus();
-        ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
-                .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+//        ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
+//                .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
 
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_UP:
