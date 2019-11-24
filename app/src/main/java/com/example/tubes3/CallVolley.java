@@ -89,9 +89,11 @@ public class CallVolley {
                             ex.printStackTrace();
                         }
                     }
+                    presenter.updateMangaChapterInfo(listChapter,mangaInfo);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
