@@ -8,6 +8,30 @@ public class MangaChapterInfoModel {
     protected String urlImageCover;
     protected String releaseDate;
 
+    public String getMangaTitle() {
+        return mangaTitle;
+    }
+
+    public String[] getGenre() {
+        return genre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getArtistName() {
+        return artistName;
+    }
+
+    public String getUrlImageCover() {
+        return urlImageCover;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
     public MangaChapterInfoModel(String mangaTitle, String[] genre, String description, String artistName, String urlImageCover, String releaseDate) {
         this.mangaTitle = mangaTitle;
         this.genre = genre;

@@ -13,24 +13,30 @@ import java.util.List;
 public class Presenter {
     private IMainActivity ui;
     private ArrayList<MangaModel> listManga;
+    private ArrayList<MangaModel> searchListManga;
     private String[] listOfMangaContent;
     protected List<MangaChapterModel> listChapterManga;
     protected MangaChapterInfoModel mangaChapterInfoModel;
     protected CallVolley callVolley;
 
-
+    protected SearchFunction searchFunction;
     public Presenter(IMainActivity ui){
         this.ui = ui;
         this.callVolley = new CallVolley(ui.getContext(),this);
         this.listChapterManga = new ArrayList<MangaChapterModel>();
         this.listManga = new ArrayList<MangaModel>();
+        this.searchListManga = new ArrayList<MangaModel>();
     }
 
     public void initListManga(){
         this.callVolley.getMangaList();
         Log.d("inita",listManga.toString());
     }
-
+    public void searchManga(String keyword){
+        this.searchListManga.clear();
+        this.searchListManga.addAll(this.listManga);
+        this.searchFunction = new SearchFunction(searchListManga);
+    }
 
     public void addManga(ArrayList<MangaModel> manga){
         this.listManga = manga;

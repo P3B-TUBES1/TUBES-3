@@ -53,5 +53,6 @@ public class MangaChapterListFragment extends Fragment {
     }
     public void update(List<MangaChapterModel> listOfMangaChapter, MangaChapterInfoModel mangaChapterInfoModel){
         this.mAdapter.update(listOfMangaChapter);
+        Picasso.get().load(BASE_URL+mangaChapterInfoModel.getUrlImageCover()+"/").into(img);
     }
 }
