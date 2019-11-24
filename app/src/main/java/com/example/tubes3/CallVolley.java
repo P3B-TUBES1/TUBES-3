@@ -79,7 +79,7 @@ public class CallVolley {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String[] imgUrl=null;
+                   String[] imgUrl=null;
                 JSONArray temp;
                 try {
                     temp = response.getJSONArray("images");

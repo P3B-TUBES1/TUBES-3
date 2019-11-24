@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.tubes3.Adapter.MangaContentAdapter;
+import com.example.tubes3.model.MangaChapterInfoModel;
 import com.example.tubes3.model.MangaChapterModel;
 
 import java.util.List;
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     }
 
     @Override
-    public void updateChapterList(List<MangaChapterModel> listChapter) {
-        ((MangaChapterListFragment)this.fragmentList[1]).update(listChapter);
+    public void updateChapterList(List<MangaChapterModel> listChapter, MangaChapterInfoModel mangaChapterInfoModel) {
+        ((MangaChapterListFragment)this.fragmentList[1]).update(listChapter,mangaChapterInfoModel);
     }
 
     @Override
@@ -85,10 +86,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     }
 
-    @Override
-    public List<MangaChapterModel> getChapterArray() {
-        return presenter.getArrayChapterManga();
-    }
+//    @Override
+//    public List<MangaChapterModel> getChapterArray() {
+//        return presenter.getArrayChapterManga();
+//    }
 
     @Override
     public void showMangaList() {

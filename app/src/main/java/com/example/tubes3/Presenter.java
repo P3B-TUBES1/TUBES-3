@@ -49,10 +49,18 @@ public class Presenter {
 //        addChapter(listChapterManga);
     }
 
-    public void addChapter(List listChapter){
-
-        this.ui.updateChapterList(listChapter);
+    public void updateMangaChapterInfo(List<MangaChapterModel> listChapterManga,MangaChapterInfoModel mangaChapterInfoModel){
+        this.listChapterManga.clear();
+        this.listChapterManga.addAll(listChapterManga);
+        this.mangaChapterInfoModel = mangaChapterInfoModel;
+        this.ui.updateChapterList(this.listChapterManga,this.mangaChapterInfoModel);
     }
+//
+//    public void addChapter(List listChapter){
+//
+//        this.ui.updateChapterList(listChapter);
+//    }
+
     public void changeMangaContent(int i){
         if(i<=0){
             i=1;
@@ -60,22 +68,23 @@ public class Presenter {
         this.callVolley.getChapter("5c41e6c1719a161e8d68f23c",i);
     }
 
+
     public void updateMangaContent(String[] listOfMangeContent, int indeks) {
         this.listOfMangaContent = listOfMangeContent;
 
         this.ui.updateMangaContent(this.listOfMangaContent,indeks);
     }
 
-    public MangaChapterInfoModel getMangaChapterInfoModel() {
-        return mangaChapterInfoModel;
-    }
+//    public MangaChapterInfoModel getMangaChapterInfoModel() {
+//        return mangaChapterInfoModel;
+//    }
 
-    public void setMangaChapterInfoModel(MangaChapterInfoModel mangaChapterInfoModel) {
-        this.mangaChapterInfoModel = mangaChapterInfoModel;
-    }
+//    public void setMangaChapterInfoModel(MangaChapterInfoModel mangaChapterInfoModel) {
+//        this.mangaChapterInfoModel = mangaChapterInfoModel;
+//    }
 
-    public List<MangaChapterModel> getArrayChapterManga() {
-        return listChapterManga;
-    }
+//    public List<MangaChapterModel> getArrayChapterManga() {
+//        return listChapterManga;
+//    }
 
 }
