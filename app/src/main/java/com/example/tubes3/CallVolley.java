@@ -9,10 +9,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tubes3.model.MangaChapterInfoModel;
+import com.example.tubes3.model.MangaChapterModel;
 import com.example.tubes3.model.MangaModel;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -60,11 +64,34 @@ public class CallVolley {
     }
 
     public void getMangaInfo(String mangaID){
-        String url = BASE_URL+"manga/" + mangaID + "/";
+        final String url = BASE_URL+"manga/" + mangaID + "/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                try {
+                    String mangaTitle = response.getString("title");
+                    String[] genre = gson.fromJson(gson.fromJson(response.getJSONArray("c").toString(), JsonObject.class), String[].class);
+                    String description = response.getString("description");
+                    String artistName = response.getString("author");
+                    String urlImageCover = response.getString("image");
+                    String releaseDate = response.getString("released");
+                    MangaChapterInfoModel mangaInfo = new MangaChapterInfoModel(mangaTitle, genre, description, artistName, urlImageCover, releaseDate);
+                    List<MangaChapterModel> listChapter = new ArrayList<MangaChapterModel>();
+                    JSONArray chapters = response.getJSONArray("chapters");
+                    for (int i = 0; i < chapters.length(); i++) {
+                        try {
+                            JSONArray chapter = chapters.getJSONArray(i);
+                            String chapterTitle = chapter.getString(2);
+                            String chapterDate = "";
+                            String urlImage = "";
+                            listChapter.add(new MangaChapterModel(chapterTitle, chapterDate, urlImage, i));
+                        } catch (JSONException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -79,7 +106,7 @@ public class CallVolley {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                   String[] imgUrl=null;
+                String[] imgUrl=null;
                 JSONArray temp;
                 try {
                     temp = response.getJSONArray("images");
