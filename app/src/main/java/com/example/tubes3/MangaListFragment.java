@@ -96,6 +96,13 @@ public class MangaListFragment extends Fragment implements View.OnClickListener{
             Log.d("alert", "alert");
         }
         if(view == searchIcon){
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(
+                    getContext().INPUT_METHOD_SERVICE);
+            View focusedView = getActivity().getCurrentFocus();
+            if (focusedView != null) {
+                inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+            }
             presenter.searchManga(editText.getText().toString());
         }
     }
