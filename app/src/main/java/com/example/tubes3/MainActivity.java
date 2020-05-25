@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import com.example.tubes3.model.MangaChapterInfoModel;
 import com.example.tubes3.model.MangaChapterModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 

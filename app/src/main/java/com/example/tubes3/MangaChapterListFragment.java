@@ -1,12 +1,22 @@
 package com.example.tubes3;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +50,19 @@ public class MangaChapterListFragment extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.manga_chapter_list_page, container, false);
         this.img = view.findViewById(R.id.iv_pic);
+        RelativeLayout rl_toolbar = view.findViewById(R.id.rl_toolbar);
+        ImageView img = new ImageView(getContext());
+
+        Drawable drawable = ContextCompat.getDrawable(getContext(),R.drawable.download);
+        drawable.setColorFilter(new
+                PorterDuffColorFilter(getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_IN));
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,RelativeLayout.TRUE);
+        img.setAdjustViewBounds(true);
+        img.setLayoutParams(lp);
+        img.setImageDrawable(drawable);
+        rl_toolbar.addView(img);
         //img.setImageResource();
         //this.mangaChapterInfoModel = presenter.mangaChapterInfoModel;
         recyclerView = view.findViewById(R.id.rv_list_chapter);
